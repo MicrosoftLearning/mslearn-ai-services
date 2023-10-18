@@ -33,7 +33,7 @@ Open up a new browser tab to work with Cloud Shell. If you haven't cloned this r
 6. The files are downloaded to a folder named **labs**. Navigate to the lab files for this exercise using the following command.
 
     ```bash
-   cd labs/02-ai-services-security
+   cd labs/Labfiles/02-ai-services-security
     ```
 
 Use the following command to open the lab files in the built-in code editor.
