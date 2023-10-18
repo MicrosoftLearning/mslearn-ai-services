@@ -12,13 +12,13 @@ In this exercise, you'll use Azure AI Personalizer with notebooks in Visual Stud
 
 1. In the Azure portal, search for **Azure AI services**. Then select **Create** under **Personalizer** in the results list.
 
-    :::image type="content" source="../media/ai-personalizer/create-personalizer-portal.png" alt-text="A screenshot of the Azure portal showing how to create an Azure AI Personalizer resource.":::
+    ![A screenshot of the Azure portal showing how to create an Azure AI Personalizer resource](../media/ai-personalizer/create-personalizer-portal.png)
 
 1. Select your subscription, enter a resource group name, and name for your resource. For pricing tier, choose **Free F0**.
 1. Select **Review + create** to review your choices, then select **Create** create your resource.
 1. Go to your newly created Azure AI Personalizer resource, then in the Keys and Endpoint pane, copy and paste the **Key** and **Endpoint** somewhere safe for use later:
 
-    :::image type="content" source="../media/ai-personalizer/copy-key-endpoint.png" alt-text="A screenshot showing the Key and Endpoint pane.":::
+    ![A screenshot showing the Key and Endpoint pane.](../media/ai-personalizer/copy-key-endpoint.png)
 
 1. Select Setup in the navigation pane, and then set the **Reward wait time** to **10 minutes** (if not already set), and set the **Model update frequency** to **15 seconds**.
 1. Select **Save**.
@@ -29,7 +29,7 @@ In this exercise, you'll use Azure AI Personalizer with notebooks in Visual Stud
 1. Save the file and name it **my-notebook** on your device.
 1. Now you need to install the required extensions. Select **Select Kernel** in the top right of the notebook. Then select **Install/Enable suggested extensions**.
 
-    :::image type="content" source="../media/ai-personalizer/8-install-enable-extensions-code.png" alt-text="A screenshot showing how to install the extensions.":::
+    ![A screenshot showing how to install the extensions.](../media/ai-personalizer/8-install-enable-extensions-code.png)
 
     > [!NOTE]
     > If you've already done this before, you won't see this option and can skip this step.
@@ -197,8 +197,8 @@ For the purpose of this exercise, we'll create a list of users and a list coffee
     ```
 
 1. Select the cell, then select the run button to the left of the cell:
-    :::image type="content" source="../media/ai-personalizer/8-press-run.png" alt-text="A screenshot showing the run button.":::
 
+    ![A screenshot showing the run button.](../media/ai-personalizer/8-press-run.png)
     > [!NOTE]
     > Make to you select the run button each time you populate a new cell. If you're prompted to install the ipykernel package, select **Install**.
 
@@ -352,7 +352,7 @@ Your code makes requests to the API. To get a good metric your requests, you can
 
 1. Select **Metrics** under Monitoring in the navigation pane.
 
-    :::image type="content" source="../media/ai-personalizer/8-create-metric-chart.png" alt-text="A screenshot of the metric chart.":::
+    ![A screenshot of the metric chart.](../media/ai-personalizer/8-create-metric-chart.png)
 
 1. The **Scope** and **Metric** namespace are already set for you. You only need to select the **Metric** of **Successful calls** and the **Aggregation** of **Sum**.
 
@@ -594,7 +594,7 @@ Azure AI Personalizer needs a few thousand calls to the Rank API and the Reward 
 
 1. Your notebook will create a chart:
 
-    :::image type="content" source="../media/ai-personalizer/7-chart2.png" alt-text="A screenshot of the chart.":::
+    ![A screenshot of the chart.](../media/ai-personalizer/7-chart2.png)
 
 > [!TIP]
 > Ideally, once testing has finished, your loop should on average make correct recommendations at a rate of 100 percent minus the exploration value (which is 20% by default), so 80% is your target rate here. A way to get to this is to increase the iterations to at least 10,000.
@@ -611,14 +611,12 @@ You can run an offline evaluation to find a better learning policy for an Azure 
 1. In the Azure portal, go to your Azure AI Personalizer resource's Optimize pane and select **Create evaluation**.
 1. Provide an evaluation name, and select a start and end date range for your loop evaluation. Your date range should include only the days you are focusing on for your evaluation:
 
-    :::image type="content" source="../media/ai-personalizer/7-evaluation-form.png" alt-text="A screenshot showing the evaluation form.":::
-
+    ![A screenshot showing the evaluation form.](../media/ai-personalizer/7-evaluation-form.png)
 1. Select **Start evaluation** to begin your evaluation.
 
 1. When your evaluation has completed, select it from the list of evaluations on the Optimize pane. Then review the performance of your learning policies based on details like their average reward, confidence intervals, and more:
 
-    :::image type="content" source="../media/ai-personalizer/7-offline-eval-result.png" alt-text="A screenshot showing evaluation results.":::
-
+    ![A screenshot showing evaluation results.](../media/ai-personalizer/7-offline-eval-result.png)
 1. You'll see a few policies including:
 
     - **Online** - Your Azure AI Personalizer's current policy.
