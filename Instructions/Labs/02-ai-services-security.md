@@ -27,13 +27,13 @@ Open up a new browser tab to work with Cloud Shell. If you haven't cloned this r
 5. Once the terminal starts, enter the following command to download the sample application and save it to a folder called `labs`.
 
     ```bash
-   git clone https://github.com/MicrosoftLearning/AI-102-AIEngineer labs
+   git clone https://github.com/MicrosoftLearning/mslearn-ai-services labs
     ```
   
 6. The files are downloaded to a folder named **labs**. Navigate to the lab files for this exercise using the following command.
 
     ```bash
-   cd labs/02-cognitive-security
+   cd labs/02-ai-services-security
     ```
 
 Use the following command to open the lab files in the built-in code editor.
@@ -74,7 +74,7 @@ When you created your Azure AI services resource, two authentication keys were g
 
     The command returns a list of the keys for your Azure AI services resource - there are two keys, named **key1** and **key2**.
 
-3. To test your Azure AI service, you can use **curl** - a command line tool for HTTP requests. In the **02-cognitive-security** folder, open **rest-test.sh** and edit the **curl** command it contains (shown below), replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Text Analytics API in your Azure AI services resource.
+3. To test your Azure AI service, you can use **curl** - a command line tool for HTTP requests. In the **02-ai-services-security** folder, open **rest-test.sh** and edit the **curl** command it contains (shown below), replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Text Analytics API in your Azure AI services resource.
 
     ```bash
     curl -X POST "<your-endpoint>/text/analytics/v3.1/languages?" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <your-key>" --data-ascii "{'documents':[{'id':1,'text':'hello'}]}"
