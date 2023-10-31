@@ -26,21 +26,22 @@ Open up a new browser tab to work with Cloud Shell. If you haven't cloned this r
 
 5. Once the terminal starts, enter the following command to download the sample application and save it to a folder called `labs`.
 
-    ```bash
+   ```bash
+   rm -r labs -f 
    git clone https://github.com/MicrosoftLearning/mslearn-ai-services labs
-    ```
+   ```
   
 6. The files are downloaded to a folder named **labs**. Navigate to the lab files for this exercise using the following command.
 
-    ```bash
+   ```bash
    cd labs/Labfiles/02-ai-services-security
-    ```
+   ```
 
 Use the following command to open the lab files in the built-in code editor.
 
-```bash
-code .
-```
+   ```bash
+   code .
+   ```
 
 Code for both C# and Python has been provided.
 
@@ -68,7 +69,7 @@ When you created your Azure AI services resource, two authentication keys were g
     - The *location* where the resource is hosted. This is required for requests to some (but not all) APIs.
 2. Now you can use the following command to get the list of Azure AI services keys, replacing *&lt;resourceName&gt;* with the name of your Azure AI services resource, and *&lt;resourceGroup&gt;* with the name of the resource group in which you created it.
 
-    ```
+    ```bash
     az cognitiveservices account keys list --name <resourceName> --resource-group <resourceGroup>
     ```
 
@@ -82,7 +83,7 @@ When you created your Azure AI services resource, two authentication keys were g
 
 4. Save your changes, and then run the following command:
 
-    ```
+    ```bash
     sh rest-test.sh
     ```
 
@@ -90,7 +91,7 @@ The command returns a JSON document containing information about the language de
 
 5. If a key becomes compromised, or the developers who have it no longer require access, you can regenerate it in the portal or by using the Azure CLI. Run the following command to regenerate your **key1** key (replacing *&lt;resourceName&gt;* and *&lt;resourceGroup&gt;* for your resource).
 
-    ```
+    ```bash
     az cognitiveservices account keys regenerate --name <resourceName> --resource-group <resourceGroup> --key-name key1
     ```
 
@@ -118,11 +119,11 @@ First, you need to create a key vault and add a *secret* for the Azure AI servic
         - **Key vault name**: *Enter a unique name*
         - **Region**: *The same region as your Azure AI service resource*
         - **Pricing tier**: Standard
-    
+
     - **Access configuration** tab
-        -  **Permission model**: Vault access policy
+        - **Permission model**: Vault access policy
         - Scroll down to the **Access policies** section and select your user using the checkbox on the left. Then select **Review + create**, and select **Create** to create your resource.
-     
+
 3. Wait for deployment to complete and then go to your key vault resource.
 4. In the left navigation pane, select **Secrets** (in the Objects section).
 5. Select **+ Generate/Import** and add a new secret with the following settings :
@@ -139,34 +140,34 @@ To access the secret in the key vault, your application must use a service princ
 
     > **Tip**: If you are unsure of your subscription ID, use the **az account show** command to retrieve your subscription information - the subscription ID is the **id** attribute in the output. If you see an error about the object already existing, please choose a different unique name.
 
-    ```
+    ```bash
     az ad sp create-for-rbac -n "api://<spName>" --role owner --scopes subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>
     ```
 
 The output of this command includes information about your new service principal. It should look similar to this:
 
-    ```
-    {
+   ```json
+   {
         "appId": "abcd12345efghi67890jklmn",
         "displayName": "ai-app",
         "name": "http://ai-app",
         "password": "1a2b3c4d5e6f7g8h9i0j",
         "tenant": "1234abcd5678fghi90jklm"
-    }
-    ```
+   }
+   ```
 
 Make a note of the **appId**, **password**, and **tenant** values - you will need them later (if you close this terminal, you won't be able to retrieve the password; so it's important to note the values now - you can paste the output into a new text file on your local machine to ensure you can find the values you need later!)
 
 2. To get the **object ID** of your service principal, run the following Azure CLI command, replacing *&lt;appId&gt;* with the value of your service principal's app ID.
 
-    ```
+    ```bash
     az ad sp show --id <appId>
     ```
 
 3. Copy the `id` value in the json returned in response. 
 3. To assign permission for your new service principal to access secrets in your Key Vault, run the following Azure CLI command, replacing *&lt;keyVaultName&gt;* with the name of your Azure Key Vault resource and *&lt;objectId&gt;* with the value of your service principal's ID value you've just copied.
 
-    ```
+    ```bash
     az keyvault set-policy -n <keyVaultName> --object-id <objectId> --secret-permissions get list
     ```
 
@@ -181,7 +182,7 @@ Now you're ready to use the service principal identity in an application, so it 
 
     **C#**
 
-    ```
+    ```csharp
     dotnet add package Azure.AI.TextAnalytics --version 5.3.0
     dotnet add package Azure.Identity --version 1.5.0
     dotnet add package Azure.Security.KeyVault.Secrets --version 4.2.0-beta.3
@@ -189,7 +190,7 @@ Now you're ready to use the service principal identity in an application, so it 
 
     **Python**
 
-    ```
+    ```python
     pip install azure-ai-textanalytics==5.3.0
     pip install azure-identity==1.5.0
     pip install azure-keyvault-secrets==4.2.0
@@ -200,7 +201,7 @@ Now you're ready to use the service principal identity in an application, so it 
     - **Python**: .env
 
     Open the configuration file and update the configuration values it contains to reflect the following settings:
-    
+
     - The **endpoint** for your Azure AI Services resource
     - The name of your **Azure Key Vault** resource
     - The **tenant** for your service principal
@@ -221,13 +222,13 @@ Now you're ready to use the service principal identity in an application, so it 
 
     **C#**
 
-    ```
+    ```csharp
     dotnet run
     ```
 
     **Python**
 
-    ```
+    ```python
     python keyvault-client.py
     ```
 
