@@ -29,20 +29,21 @@ Open up a new browser tab to work with Cloud Shell. If you haven't cloned this r
 5. Once the terminal starts, enter the following command to download the sample application and save it to a folder called `labs`.
 
     ```bash
-   git clone https://github.com/MicrosoftLearning/mslearn-ai-services labs
+    rm -r labs -f
+    git clone https://github.com/MicrosoftLearning/mslearn-ai-services labs
     ```
   
 6. The files are downloaded to a folder named **labs**. Navigate to the lab files for this exercise using the following command.
 
     ```bash
-   cd labs/Labfiles/04-use-a-container
+    cd labs/Labfiles/04-use-a-container
     ```
 
 Use the following command to open the lab files in the built-in code editor.
 
-```bash
-code .
-```
+   ```bash
+   code .
+   ```
 
 ## Provision an Azure AI Services resource
 
@@ -70,14 +71,18 @@ Many commonly used Azure AI services APIs are available in container images. For
         - **Resource group**: *Choose the resource group containing your Azure AI services resource*
         - **Container name**: *Enter a unique name*
         - **Region**: *Choose any available region*
+        - **Availability zones**: *None*
+        - **SKU**: *Standard*
         - **Image source**: Other Registry
-        - **Image type**: Public
+        - *Run with Azure Spot discount* : *Unselected*
+        - **Image type**: *Public*
         - **Image**: `mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest`
         - **OS type**: Linux
         - **Size**: 1 vcpu, 12 GB memory
     - **Networking**:
-        - **Networking type**: Public
+        - **Networking type**: *Public*
         - **DNS name label**: *Enter a unique name for the container endpoint*
+        - **DNS name label scope reuse**: *Tenant*
         - **Ports**: *Change the TCP port from 80 to **5000***
     - **Advanced**:
         - **Restart policy**: On failure
@@ -90,6 +95,7 @@ Many commonly used Azure AI services APIs are available in container images. For
             | No | `Eula` | `accept` |
 
         - **Command override**: [ ]
+        - **Key management**: *Microsoft-managed keys (MMK)*
     - **Tags**:
         - *Don't add any tags*
 
@@ -103,7 +109,7 @@ Many commonly used Azure AI services APIs are available in container images. For
     > **Note**: In this exercise, you've deployed the Azure AI services container image for text translation to an Azure Container Instances (ACI) resource. You can use a similar approach to deploy it to a *[Docker](https://www.docker.com/products/docker-desktop)* host on your own computer or network by running the following command (on a single line) to deploy the language detection container to your local Docker instance, replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and either of the keys for your Azure AI services resource.
     > The command will look for the image on your local machine, and if it doesn't find it there it will pull it from the *mcr.microsoft.com* image registry and deploy it to your Docker instance. When deployment is complete, the container will start and listen for incoming requests on port 5000.
 
-    ```
+    ```bash
     docker run --rm -it -p 5000:5000 --memory 12g --cpus 1 mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest Eula=accept Billing=<yourEndpoint> ApiKey=<yourKey>
     ```
 
@@ -111,14 +117,14 @@ Many commonly used Azure AI services APIs are available in container images. For
 
 1. In your editor, open **rest-test.sh** and edit the **curl** command it contains (shown below), replacing *&lt;your_ACI_IP_address_or_FQDN&gt;* with the IP address or FQDN for your container.
 
-    ```
+    ```curl
     curl -X POST "http://<your_ACI_IP_address_or_FQDN>:5000/text/analytics/v3.0/languages" -H "Content-Type: application/json" --data-ascii "{'documents':[{'id':1,'text':'Hello world.'},{'id':2,'text':'Salut tout le monde.'}]}"
     ```
 
 2. Save your changes to the script by pressing **CTRL+S**. Note that you do not need to specify the Azure AI services endpoint or key - the request is processed by the containerized service. The container in turn communicates periodically with the service in Azure to report usage for billing, but does not send request data.
 3. Enter the following command to run the script:
 
-    ```
+    ```bash
     sh rest-test.sh
     ```
 
