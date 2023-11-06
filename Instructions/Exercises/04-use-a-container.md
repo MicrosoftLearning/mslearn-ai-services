@@ -12,37 +12,22 @@ Many of the Azure AI services APIs can be packaged and deployed in a *container*
 
 > **Note**: There is an issue currently being investigated that some users hit where containers won't deploy properly, and calls to those containers fail. Updates to this lab will be made as soon as the issue has been resolved.
 
-## Clone the repository for this course in Cloud Shell
+## Clone the repository in Visual Studio Code
 
-Open up a new browser tab to work with Cloud Shell. If you haven't cloned this repository to Cloud Shell recently, follow the steps below to make sure you have the most recent version. Otherwise, open Cloud Shell and navigate to your clone.
+You'll develop your code using Visual Studio Code. The code files for your app have been provided in a GitHub repo.
 
-1. In the [Azure portal](https://portal.azure.com?azure-portal=true), select the **[>_]** (*Cloud Shell*) button at the top of the page to the right of the search box. A Cloud Shell pane will open at the bottom of the portal.
+> **Tip**: If you have already cloned the **mslearn-ai-services** repo, open it in Visual Studio code. Othewise, follow these steps to clone it to your development environment.
 
-    ![Screenshot of starting Cloud Shell by clicking on the icon to the right of the top search box.](../media/cloudshell-launch-portal.png#lightbox)
+1. Start Visual Studio Code.
+2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/mslearn-ai-services` repository to a local folder (it doesn't matter which folder).
+3. When the repository has been cloned, open the folder in Visual Studio Code.
+4. Wait while additional files are installed to support the C# code projects in the repo, if necessary
 
-2. The first time you open the Cloud Shell, you may be prompted to choose the type of shell you want to use (*Bash* or *PowerShell*). Select **Bash**. If you don't see this option, skip the step.  
+    > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**.
 
-3. If you're prompted to create storage for your Cloud Shell, ensure your subscription is specified and select **Create storage**. Then wait a minute or so for the storage to be created.
+5. Expand the `Labfiles/04-use-a-container` folder.
 
-4. Make sure the type of shell indicated on the top left of the Cloud Shell pane is switched to *Bash*. If it's *PowerShell*, switch to *Bash* by using the drop-down menu.
-
-5. Once the terminal starts, enter the following command to download the sample application and save it to a folder called `labs`.
-
-    ```bash
-   git clone https://github.com/MicrosoftLearning/mslearn-ai-services labs
-    ```
-  
-6. The files are downloaded to a folder named **labs**. Navigate to the lab files for this exercise using the following command.
-
-    ```bash
-   cd labs/Labfiles/04-use-a-container
-    ```
-
-Use the following command to open the lab files in the built-in code editor.
-
-```bash
-code .
-```
+Code for both C# and Python has been provided. Expand the folder of your preferred language.
 
 ## Provision an Azure AI Services resource
 
@@ -109,7 +94,7 @@ Many commonly used Azure AI services APIs are available in container images. For
 
 ## Use the container
 
-1. In your editor, open **rest-test.sh** and edit the **curl** command it contains (shown below), replacing *&lt;your_ACI_IP_address_or_FQDN&gt;* with the IP address or FQDN for your container.
+1. In your editor, open **rest-test.cmd** and edit the **curl** command it contains (shown below), replacing *&lt;your_ACI_IP_address_or_FQDN&gt;* with the IP address or FQDN for your container.
 
     ```
     curl -X POST "http://<your_ACI_IP_address_or_FQDN>:5000/text/analytics/v3.0/languages" -H "Content-Type: application/json" --data-ascii "{'documents':[{'id':1,'text':'Hello world.'},{'id':2,'text':'Salut tout le monde.'}]}"
@@ -119,7 +104,7 @@ Many commonly used Azure AI services APIs are available in container images. For
 3. Enter the following command to run the script:
 
     ```
-    sh rest-test.sh
+    ./rest-test.cmd
     ```
 
 4. Verify that the command returns a JSON document containing information about the language detected in the two input documents (which should be English and French).
@@ -133,4 +118,4 @@ If you've finished experimenting with your container instance, you should delete
 
 ## More information
 
-For more information about containerizing Azure AI services, see the [Azure AI Services containers documentation](https://docs.microsoft.com/azure/cognitive-services/containers/).
+For more information about containerizing Azure AI services, see the [Azure AI Services containers documentation](https://learn.microsoft.com/azure/ai-services/cognitive-services-container-support).
