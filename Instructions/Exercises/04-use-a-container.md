@@ -116,6 +116,14 @@ If you've finished experimenting with your container instance, you should delete
 1. In the Azure portal, open the resource group where you created your resources for this exercise.
 2. Select the container instance resource and delete it.
 
+## Clean up resources
+
+If you're not using the Azure resources created in this lab for other training modules, you can delete them to avoid incurring further charges.
+
+1. Open the Azure portal at `https://portal.azure.com`, and in the top search bar, search for the resources you created in this lab.
+
+2. On the resource page, select **Delete** and follow the instructions to delete the resource. Alternatively, you can delete the entire resource group to clean up all resources at the same time.
+
 ## More information
 
 For more information about containerizing Azure AI services, see the [Azure AI Services containers documentation](https://learn.microsoft.com/azure/ai-services/cognitive-services-container-support).

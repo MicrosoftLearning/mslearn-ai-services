@@ -596,8 +596,7 @@ Azure AI Personalizer needs a few thousand calls to the Rank API and the Reward 
 
     ![A screenshot of the chart.](../media/ai-personalizer/7-chart2.png)
 
-> [!TIP]
-> Ideally, once testing has finished, your loop should on average make correct recommendations at a rate of 100 percent minus the exploration value (which is 20% by default), so 80% is your target rate here. A way to get to this is to increase the iterations to at least 10,000.
+> **Tip:** Ideally, once testing has finished, your loop should on average make correct recommendations at a rate of 100 percent minus the exploration value (which is 20% by default), so 80% is your target rate here. A way to get to this is to increase the iterations to at least 10,000.
 
 The chart displays how successful your model is based on the default learning policy.  This chart shows that the learning policy can be improved. You can do this by changing the policy after running evaluations.
 
@@ -625,3 +624,12 @@ You can run an offline evaluation to find a better learning policy for an Azure 
     - **Inter-len#** or **Hyper#** - Policies created by Optimization discovery.
 
 1. Select **Apply** on the policy that improves the model best.
+
+## Clean up resources
+
+If you're not using the Azure resources created in this lab for other training modules, you can delete them to avoid incurring further charges.
+
+1. Open the Azure portal at `https://portal.azure.com`, and in the top search bar, search for the resources you created in this lab.
+
+2. On the resource page, select **Delete** and follow the instructions to delete the resource. Alternatively, you can delete the entire resource group to clean up all resources at the same time.
+
