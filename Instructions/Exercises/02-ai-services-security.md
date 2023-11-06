@@ -10,39 +10,22 @@ Security is a critical consideration for any application, and as a developer you
 
 Access to Azure AI services is typically controlled through authentication keys, which are generated when you initially create an Azure AI services resource.
 
-## Clone the repository for this course in Cloud Shell
+## Clone the repository in Visual Studio Code
 
-Open up a new browser tab to work with Cloud Shell. If you haven't cloned this repository to Cloud Shell recently, follow the steps below to make sure you have the most recent version. Otherwise, open Cloud Shell and navigate to your clone.
+You'll develop your code using Visual Studio Code. The code files for your app have been provided in a GitHub repo.
 
-1. In the [Azure portal](https://portal.azure.com?azure-portal=true), select the **[>_]** (*Cloud Shell*) button at the top of the page to the right of the search box. A Cloud Shell pane will open at the bottom of the portal.
+> **Tip**: If you have already cloned the **mslearn-ai-services** repo, open it in Visual Studio code. Othewise, follow these steps to clone it to your development environment.
 
-    ![Screenshot of starting Cloud Shell by clicking on the icon to the right of the top search box.](../media/cloudshell-launch-portal.png#lightbox)
+1. Start Visual Studio Code.
+2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/mslearn-ai-services` repository to a local folder (it doesn't matter which folder).
+3. When the repository has been cloned, open the folder in Visual Studio Code.
+4. Wait while additional files are installed to support the C# code projects in the repo, if necessary
 
-2. The first time you open the Cloud Shell, you may be prompted to choose the type of shell you want to use (*Bash* or *PowerShell*). Select **Bash**. If you don't see this option, skip the step.  
+    > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**.
 
-3. If you're prompted to create storage for your Cloud Shell, ensure your subscription is specified and select **Create storage**. Then wait a minute or so for the storage to be created.
+5. Expand the `Labfiles/02-ai-services-security` folder.
 
-4. Make sure the type of shell indicated on the top left of the Cloud Shell pane is switched to *Bash*. If it's *PowerShell*, switch to *Bash* by using the drop-down menu.
-
-5. Once the terminal starts, enter the following command to download the sample application and save it to a folder called `labs`.
-
-    ```bash
-   git clone https://github.com/MicrosoftLearning/mslearn-ai-services labs
-    ```
-  
-6. The files are downloaded to a folder named **labs**. Navigate to the lab files for this exercise using the following command.
-
-    ```bash
-   cd labs/Labfiles/02-ai-services-security
-    ```
-
-Use the following command to open the lab files in the built-in code editor.
-
-```bash
-code .
-```
-
-Code for both C# and Python has been provided.
+Code for both C# and Python has been provided. Expand the folder of your preferred language.
 
 ## Provision an Azure AI Services resource
 
@@ -74,10 +57,12 @@ When you created your Azure AI services resource, two authentication keys were g
 
     The command returns a list of the keys for your Azure AI services resource - there are two keys, named **key1** and **key2**.
 
-3. To test your Azure AI service, you can use **curl** - a command line tool for HTTP requests. In the **02-ai-services-security** folder, open **rest-test.sh** and edit the **curl** command it contains (shown below), replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Text Analytics API in your Azure AI services resource.
+    > **Tip**: If you haven't authenticated Azure CLI yet, run `az login` and sign into your account.
+
+3. To test your Azure AI service, you can use **curl** - a command line tool for HTTP requests. In the **02-ai-services-security** folder, open **rest-test.cmd** and edit the **curl** command it contains (shown below), replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Analyze Text API in your Azure AI services resource.
 
     ```bash
-    curl -X POST "<your-endpoint>/text/analytics/v3.1/languages?" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <your-key>" --data-ascii "{'documents':[{'id':1,'text':'hello'}]}"
+    curl -X POST "<yourEndpoint>/language/:analyze-text?api-version=2023-04-01" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: 81468b6728294aab99c489664a818197" --data-ascii "{'analysisInput':{'documents':[{'id':1,'text':'hello'}]}, 'kind': 'LanguageDetection'}"
     ```
 
 4. Save your changes, and then run the following command:
@@ -97,7 +82,7 @@ The command returns a JSON document containing information about the language de
 The list of keys for your Azure AI services resource is returned - note that **key1** has changed since you last retrieved them.
 
 6. Re-run the **rest-test** command with the old key (you can use the **^** arrow on your keyboard to cycle through previous commands), and verify that it now fails.
-7. Edit the *curl* command in **rest-test.sh** replacing the key with the new **key1** value, and save the changes. Then rerun the **rest-test** command and verify that it succeeds.
+7. Edit the *curl* command in **rest-test.cmd** replacing the key with the new **key1** value, and save the changes. Then rerun the **rest-test** command and verify that it succeeds.
 
 > **Tip**: In this exercise, you used the full names of Azure CLI parameters, such as **--resource-group**.  You can also use shorter alternatives, such as **-g**, to make your commands less verbose (but a little harder to understand).  The [Azure AI Services CLI command reference](https://docs.microsoft.com/cli/azure/cognitiveservices?view=azure-cli-latest) lists the parameter options for each Azure AI services CLI command.
 
@@ -127,7 +112,7 @@ First, you need to create a key vault and add a *secret* for the Azure AI servic
 4. In the left navigation pane, select **Secrets** (in the Objects section).
 5. Select **+ Generate/Import** and add a new secret with the following settings :
     - **Upload options**: Manual
-    - **Name**: Cognitive-Services-Key *(it's important to match this exactly, because later you'll run code that retrieves the secret based on this name)*
+    - **Name**: AI-Services-Key *(it's important to match this exactly, because later you'll run code that retrieves the secret based on this name)*
     - **Value**: *Your **key1** Azure AI services key*
 6. Select **Create**.
 
@@ -148,8 +133,7 @@ The output of this command includes information about your new service principal
     ```
     {
         "appId": "abcd12345efghi67890jklmn",
-        "displayName": "ai-app",
-        "name": "http://ai-app",
+        "displayName": "api://ai-app-",
         "password": "1a2b3c4d5e6f7g8h9i0j",
         "tenant": "1234abcd5678fghi90jklm"
     }
@@ -236,4 +220,4 @@ Now you're ready to use the service principal identity in an application, so it 
 
 ## More information
 
-For more information about securing Azure AI services, see the [Azure AI Services security documentation](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-security).
+For more information about securing Azure AI services, see the [Azure AI Services security documentation](https://docs.microsoft.com/azure/ai-services/security-features).

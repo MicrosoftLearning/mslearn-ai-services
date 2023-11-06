@@ -23,7 +23,7 @@ def main():
         key_vault_uri = f"https://{key_vault_name}.vault.azure.net/"
         credential = ClientSecretCredential(app_tenant, app_id, app_password)
         keyvault_client = SecretClient(key_vault_uri, credential)
-        secret_key = keyvault_client.get_secret("Cognitive-Services-Key")
+        secret_key = keyvault_client.get_secret("AI-Services-Key")
         cog_key = secret_key.value
 
         # Get user input (until they enter "quit")

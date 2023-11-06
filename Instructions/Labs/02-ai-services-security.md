@@ -127,7 +127,7 @@ First, you need to create a key vault and add a *secret* for the Azure AI servic
 4. In the left navigation pane, select **Secrets** (in the Objects section).
 5. Select **+ Generate/Import** and add a new secret with the following settings :
     - **Upload options**: Manual
-    - **Name**: Cognitive-Services-Key *(it's important to match this exactly, because later you'll run code that retrieves the secret based on this name)*
+    - **Name**: AI-Services-Key *(it's important to match this exactly, because later you'll run code that retrieves the secret based on this name)*
     - **Value**: *Your **key1** Azure AI services key*
 6. Select **Create**.
 
@@ -236,4 +236,4 @@ Now you're ready to use the service principal identity in an application, so it 
 
 ## More information
 
-For more information about securing Azure AI services, see the [Azure AI Services security documentation](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-security).
+For more information about securing Azure AI services, see the [Azure AI Services security documentation](https://docs.microsoft.com/azure/ai-services/security-features).

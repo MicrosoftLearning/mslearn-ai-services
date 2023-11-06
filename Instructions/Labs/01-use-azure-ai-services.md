@@ -161,4 +161,4 @@ You can write code that consumes Azure AI services REST APIs directly, but there
 
 ## More information
 
-For more information about Azure AI Services, see the [Azure AI Services documentation](https://docs.microsoft.com/azure/cognitive-services/what-are-cognitive-services).
+For more information about Azure AI Services, see the [Azure AI Services documentation](https://docs.microsoft.com/azure/ai-services/what-are-ai-services).
