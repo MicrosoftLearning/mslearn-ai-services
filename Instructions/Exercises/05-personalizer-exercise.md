@@ -25,7 +25,6 @@ In this exercise, you'll use Azure AI Personalizer with notebooks in Visual Stud
 
 ## Set up notebook
 
-1. In your Visual Studio Code editor, press **Ctrl+Shift+P** and select **Create new Jupyter notebook**.
 1. In your Visual Studio Code editor, press **Ctrl+Shift+P** and select **Create: New Jupyter Notebook**.
 1. Save the file and name it **my-notebook** on your device.
 1. Now you need to install the required extensions. Select **Select Kernel** in the top right of the notebook. Then select **Install/Enable suggested extensions**.
