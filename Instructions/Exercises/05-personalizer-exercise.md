@@ -1,6 +1,6 @@
 ---
 lab:
-    title: 'Use AI Personalizer with Visual Studio Code Notebooks to simulate a loop'
+  title: "Use AI Personalizer with Visual Studio Code Notebooks to simulate a loop"
 ---
 
 > **Note**
@@ -12,27 +12,28 @@ In this exercise, you'll use Azure AI Personalizer with notebooks in Visual Stud
 
 1. In the Azure portal, search for **Azure AI services**. Then select **Create** under **Personalizer** in the results list.
 
-    ![A screenshot of the Azure portal showing how to create an Azure AI Personalizer resource](../media/ai-personalizer/create-personalizer-portal.png)
+   ![A screenshot of the Azure portal showing how to create an Azure AI Personalizer resource](../media/ai-personalizer/create-personalizer-portal.png)
 
 1. Select your subscription, enter a resource group name, and name for your resource. For pricing tier, choose **Free F0**.
 1. Select **Review + create** to review your choices, then select **Create** create your resource.
 1. Go to your newly created Azure AI Personalizer resource, then in the Keys and Endpoint pane, copy and paste the **Key** and **Endpoint** somewhere safe for use later:
 
-    ![A screenshot showing the Key and Endpoint pane.](../media/ai-personalizer/copy-key-endpoint.png)
+   ![A screenshot showing the Key and Endpoint pane.](../media/ai-personalizer/copy-key-endpoint.png)
 
 1. Select Setup in the navigation pane, and then set the **Reward wait time** to **10 minutes** (if not already set), and set the **Model update frequency** to **15 seconds**.
 1. Select **Save**.
 
 ## Set up notebook
 
-1. In your Visual Studio Code editor, press **Ctrl+Shift+P** and select **Create new Jupyter notebook**.
+1. In your Visual Studio Code editor, press **Ctrl+Shift+P** and select **Create: New Jupyter Notebook**.
 1. Save the file and name it **my-notebook** on your device.
 1. Now you need to install the required extensions. Select **Select Kernel** in the top right of the notebook. Then select **Install/Enable suggested extensions**.
 
-    ![A screenshot showing how to install the extensions.](../media/ai-personalizer/8-install-enable-extensions-code.png)
+   ![A screenshot showing how to install the extensions.](../media/ai-personalizer/8-install-enable-extensions-code.png)
 
-    > [!NOTE]
-    > If you've already done this before, you won't see this option and can skip this step.
+   > [!NOTE]
+   > If you've already done this before, you won't see this option and can skip this step.
+
 1. Wait for the extensions to be installed, then select **Python environments...** in the dropdown that appears.
 1. Then select the top recommended environment.
 
@@ -42,173 +43,170 @@ For the purpose of this exercise, we'll create a list of users and a list coffee
 
 1. Copy the following JSON code into an empty file and save that file as `users.json` in the same folder as your notebook file.
 
-    ```json
-    {
-      "Alice": {
-        "Sunny": {
-          "Morning": "Cold brew",
-          "Afternoon": "Iced mocha",
-          "Evening": "Cold brew"
-        },
-        "Rainy": {
-          "Morning": "Latte",
-          "Afternoon": "Cappucino",
-          "Evening": "Latte"
-        },
-        "Snowy": {
-          "Morning": "Cappucino",
-          "Afternoon": "Cappucino",
-          "Evening": "Cappucino"
-        }
-      },
-      "Bob": {
-        "Sunny": {
-          "Morning": "Cappucino",
-          "Afternoon": "Iced mocha",
-          "Evening": "Cold brew"
-        },
-        "Rainy": {
-          "Morning": "Latte",
-          "Afternoon": "Latte",
-          "Evening": "Latte"
-        },
-        "Snowy": {
-          "Morning": "Iced mocha",
-          "Afternoon": "Iced mocha",
-          "Evening": "Iced mocha"
-        }
-      },
-      "Cathy": {
-        "Sunny": {
-          "Morning": "Latte",
-          "Afternoon": "Cold brew",
-          "Evening": "Cappucino"
-        },
-        "Rainy": {
-          "Morning": "Cappucino",
-          "Afternoon": "Latte",
-          "Evening": "Iced mocha"
-        },
-        "Snowy": {
-          "Morning": "Cold brew",
-          "Afternoon": "Iced mocha",
-          "Evening": "Cappucino"
-        }
-      },
-      "Dave": {
-        "Sunny": {
-          "Morning": "Iced mocha",
-          "Afternoon": "Iced mocha",
-          "Evening": "Iced mocha"
-        },
-        "Rainy": {
-          "Morning": "Latte",
-          "Afternoon": "Latte",
-          "Evening": "Latte"
-        },
-        "Snowy": {
-          "Morning": "Cappucino",
-          "Afternoon": "Cappucino",
-          "Evening": "Cappucino"
-        }
-      }
-    }
-    ```
+   ```json
+   {
+     "Alice": {
+       "Sunny": {
+         "Morning": "Cold brew",
+         "Afternoon": "Iced mocha",
+         "Evening": "Cold brew"
+       },
+       "Rainy": {
+         "Morning": "Latte",
+         "Afternoon": "Cappucino",
+         "Evening": "Latte"
+       },
+       "Snowy": {
+         "Morning": "Cappucino",
+         "Afternoon": "Cappucino",
+         "Evening": "Cappucino"
+       }
+     },
+     "Bob": {
+       "Sunny": {
+         "Morning": "Cappucino",
+         "Afternoon": "Iced mocha",
+         "Evening": "Cold brew"
+       },
+       "Rainy": {
+         "Morning": "Latte",
+         "Afternoon": "Latte",
+         "Evening": "Latte"
+       },
+       "Snowy": {
+         "Morning": "Iced mocha",
+         "Afternoon": "Iced mocha",
+         "Evening": "Iced mocha"
+       }
+     },
+     "Cathy": {
+       "Sunny": {
+         "Morning": "Latte",
+         "Afternoon": "Cold brew",
+         "Evening": "Cappucino"
+       },
+       "Rainy": {
+         "Morning": "Cappucino",
+         "Afternoon": "Latte",
+         "Evening": "Iced mocha"
+       },
+       "Snowy": {
+         "Morning": "Cold brew",
+         "Afternoon": "Iced mocha",
+         "Evening": "Cappucino"
+       }
+     },
+     "Dave": {
+       "Sunny": {
+         "Morning": "Iced mocha",
+         "Afternoon": "Iced mocha",
+         "Evening": "Iced mocha"
+       },
+       "Rainy": {
+         "Morning": "Latte",
+         "Afternoon": "Latte",
+         "Evening": "Latte"
+       },
+       "Snowy": {
+         "Morning": "Cappucino",
+         "Afternoon": "Cappucino",
+         "Evening": "Cappucino"
+       }
+     }
+   }
+   ```
 
 1. Next, copy the following code and save it to a file called `coffee.json`:
 
-    ```json
-    [
-        {
-          "id": "Cappucino",
-          "features": [
-            {
-              "type": "hot",
-              "origin": "kenya",
-              "organic": "yes",
-              "roast": "dark"
-                
-            }
-          ]
-        },
-        {
-          "id": "Cold brew",
-          "features": [
-            {
-              "type": "cold",
-              "origin": "brazil",
-              "organic": "yes",
-              "roast": "light"
-            }
-          ]
-        },
-        {
-          "id": "Iced mocha",
-          "features": [
-            {
-              "type": "cold",
-              "origin": "ethiopia",
-              "organic": "no",
-              "roast": "light"
-            }
-          ]
-        },
-        {
-          "id": "Latte",
-          "features": [
-            {
-              "type": "hot",
-              "origin": "brazil",
-              "organic": "no",
-              "roast": "dark"
-            }
-          ]
-        }
-      ]
-    ```
+   ```json
+   [
+     {
+       "id": "Cappucino",
+       "features": [
+         {
+           "type": "hot",
+           "origin": "kenya",
+           "organic": "yes",
+           "roast": "dark"
+         }
+       ]
+     },
+     {
+       "id": "Cold brew",
+       "features": [
+         {
+           "type": "cold",
+           "origin": "brazil",
+           "organic": "yes",
+           "roast": "light"
+         }
+       ]
+     },
+     {
+       "id": "Iced mocha",
+       "features": [
+         {
+           "type": "cold",
+           "origin": "ethiopia",
+           "organic": "no",
+           "roast": "light"
+         }
+       ]
+     },
+     {
+       "id": "Latte",
+       "features": [
+         {
+           "type": "hot",
+           "origin": "brazil",
+           "organic": "no",
+           "roast": "dark"
+         }
+       ]
+     }
+   ]
+   ```
 
 1. Copy and paste the following code into a file and save it as `example-rankrequest.json`:
-  
-    ```json
-    {
-      "contextFeatures": [
-      ],
-      "actions": [
-      ],
-      "excludedActions": [
-      ],
-      "eventId": "",
-      "deferActivation": false
-    }
-    ```
+
+   ```json
+   {
+     "contextFeatures": [],
+     "actions": [],
+     "excludedActions": [],
+     "eventId": "",
+     "deferActivation": false
+   }
+   ```
 
 ## Set your endpoint and key
 
 1. At the top of your notebook, add the following code to include the required modules:
 
-    ```python
-    import json
-    import matplotlib.pyplot as plt
-    import random 
-    import requests
-    import time
-    import uuid
-    import datetime
-    ```
+   ```python
+   import json
+   import matplotlib.pyplot as plt
+   import random
+   import requests
+   import time
+   import uuid
+   import datetime
+   ```
 
 1. Select the cell, then select the run button to the left of the cell:
 
-    ![A screenshot showing the run button.](../media/ai-personalizer/8-press-run.png)
-    > [!NOTE]
-    > Make to you select the run button each time you populate a new cell. If you're prompted to install the ipykernel package, select **Install**.
+   ![A screenshot showing the run button.](../media/ai-personalizer/8-press-run.png)
+
+   > [!NOTE]
+   > Make to you select the run button each time you populate a new cell. If you're prompted to install the ipykernel package, select **Install**.
 
 1. Select **+ Code** at the top of your notebook to create a new code cell. Then add the following code:
 
-    ```python
-    # Replace 'personalization_base_url' and 'resource_key' with your valid endpoint values.
-    personalization_base_url = "<your-endpoint>"
-    resource_key = "<your-resource-key>"
-    ```
+   ```python
+   # Replace 'personalization_base_url' and 'resource_key' with your valid endpoint values.
+   personalization_base_url = "<your-endpoint>"
+   resource_key = "<your-resource-key>"
+   ```
 
 1. Replace **personalization_base_url** value with your copied endpoint, and **resource_key** value with your key.
 
@@ -216,32 +214,32 @@ For the purpose of this exercise, we'll create a list of users and a list coffee
 
 1. Next, you create the code helps to take note of start and end times of iterative functions you will use later. Add the following code to a new cell:
 
-    ```python
-    # Print out current datetime
-    def currentDateTime():
-        currentDT = datetime.datetime.now()
-        print (str(currentDT))
-    
-    # ititialize variable for model's last modified date
-    modelLastModified = ""
-    
-    def get_last_updated(currentModifiedDate):
-    
-        print('-----checking model')
-    
-        # get model properties
-        response = requests.get(personalization_model_properties_url, headers = headers, params = None)
-    
-        print(response)
-        print(response.json())
-    
-        # get lastModifiedTime
-        lastModifiedTime = json.dumps(response.json()["lastModifiedTime"])
-    
-        if (currentModifiedDate != lastModifiedTime):
-            currentModifiedDate = lastModifiedTime
-            print(f'-----model updated: {lastModifiedTime}')
-    ```
+   ```python
+   # Print out current datetime
+   def currentDateTime():
+       currentDT = datetime.datetime.now()
+       print (str(currentDT))
+
+   # ititialize variable for model's last modified date
+   modelLastModified = ""
+
+   def get_last_updated(currentModifiedDate):
+
+       print('-----checking model')
+
+       # get model properties
+       response = requests.get(personalization_model_properties_url, headers = headers, params = None)
+
+       print(response)
+       print(response.json())
+
+       # get lastModifiedTime
+       lastModifiedTime = json.dumps(response.json()["lastModifiedTime"])
+
+       if (currentModifiedDate != lastModifiedTime):
+           currentModifiedDate = lastModifiedTime
+           print(f'-----model updated: {lastModifiedTime}')
+   ```
 
 1. Don't forget to run your new cell once you've added your new code.
 
@@ -249,23 +247,23 @@ For the purpose of this exercise, we'll create a list of users and a list coffee
 
 1. Next, you'll need to validate the service state by getting the policy and service configuration. To do this, add the following code to a new cell:
 
-    ```python
-    def get_service_settings():
-    
-        print('-----checking service settings')
-    
-        # get learning policy
-        response = requests.get(personalization_model_policy_url, headers = headers, params = None)
-    
-        print(response)
-        print(response.json())
-    
-        # get service settings
-        response = requests.get(personalization_service_configuration_url, headers = headers, params = None)
-    
-        print(response)
-        print(response.json())
-    ```
+   ```python
+   def get_service_settings():
+
+       print('-----checking service settings')
+
+       # get learning policy
+       response = requests.get(personalization_model_policy_url, headers = headers, params = None)
+
+       print(response)
+       print(response.json())
+
+       # get service settings
+       response = requests.get(personalization_service_configuration_url, headers = headers, params = None)
+
+       print(response)
+       print(response.json())
+   ```
 
 1. Make sure to run your new code cell.
 
@@ -284,63 +282,63 @@ Now you'll add code to:
 
 1. To do this, add the following code to a new cell and run it:
 
-    ```python
-    # build URLs
-    personalization_rank_url = personalization_base_url + "personalizer/v1.0/rank"
-    personalization_reward_url = personalization_base_url + "personalizer/v1.0/events/" #add "{eventId}/reward"
-    personalization_model_properties_url = personalization_base_url + "personalizer/v1.0/model/properties"
-    personalization_model_policy_url = personalization_base_url + "personalizer/v1.0/configurations/policy"
-    personalization_service_configuration_url = personalization_base_url + "personalizer/v1.0/configurations/service"
-    
-    headers = {'Ocp-Apim-Subscription-Key' : resource_key, 'Content-Type': 'application/json'}
-    
-    # context
-    users = "users.json"
-    
-    # action features
-    coffee = "coffee.json"
-    
-    # empty JSON for Rank request
-    requestpath = "example-rankrequest.json"
-    
-    # initialize random
-    random.seed(time.time())
-    
-    userpref = None
-    rankactionsjsonobj = None
-    actionfeaturesobj = None
-    
-    with open(users) as handle:
-        userpref = json.loads(handle.read())
-    
-    with open(coffee) as handle:
-        actionfeaturesobj = json.loads(handle.read())
-    
-    with open(requestpath) as handle:
-        rankactionsjsonobj = json.loads(handle.read())
-    
-    get_last_updated(modelLastModified)
-    get_service_settings()
-    
-    print(f'User count {len(userpref)}')
-    print(f'Coffee count {len(actionfeaturesobj)}')
-    ```
+   ```python
+   # build URLs
+   personalization_rank_url = personalization_base_url + "personalizer/v1.0/rank"
+   personalization_reward_url = personalization_base_url + "personalizer/v1.0/events/" #add "{eventId}/reward"
+   personalization_model_properties_url = personalization_base_url + "personalizer/v1.0/model/properties"
+   personalization_model_policy_url = personalization_base_url + "personalizer/v1.0/configurations/policy"
+   personalization_service_configuration_url = personalization_base_url + "personalizer/v1.0/configurations/service"
+
+   headers = {'Ocp-Apim-Subscription-Key' : resource_key, 'Content-Type': 'application/json'}
+
+   # context
+   users = "users.json"
+
+   # action features
+   coffee = "coffee.json"
+
+   # empty JSON for Rank request
+   requestpath = "example-rankrequest.json"
+
+   # initialize random
+   random.seed(time.time())
+
+   userpref = None
+   rankactionsjsonobj = None
+   actionfeaturesobj = None
+
+   with open(users) as handle:
+       userpref = json.loads(handle.read())
+
+   with open(coffee) as handle:
+       actionfeaturesobj = json.loads(handle.read())
+
+   with open(requestpath) as handle:
+       rankactionsjsonobj = json.loads(handle.read())
+
+   get_last_updated(modelLastModified)
+   get_service_settings()
+
+   print(f'User count {len(userpref)}')
+   print(f'Coffee count {len(actionfeaturesobj)}')
+   ```
 
 1. The call should return a response similar to the following:
 
-    ```bash
-    -----checking model
-    <Response [200]>
-    {'creationTime': '2023-09-22T14:58:45+00:00', 'lastModifiedTime': '2023-09-22T14:58:45+00:00'}
-    -----model updated: "2023-09-22T14:58:45+00:00"
-    -----checking service settings
-    <Response [200]>
-    {'name': '917554355a3347a1af3d2935d521426a', 'arguments': '--cb_explore_adf --epsilon 0.20000000298023224 --power_t 0 -l 0.001 --cb_type mtr -q ::'}
-    <Response [200]>
-    {'rewardWaitTime': 'PT10M', 'defaultReward': 0.0, 'rewardAggregation': 'earliest', 'explorationPercentage': 0.2, 'modelExportFrequency': 'PT15S', 'logRetentionDays': 90, 'lastConfigurationEditDate': '2021-01-01T00:00:00', 'learningMode': 'Online'}
-    User count 4
-    Coffee count 4
-    ```
+   ```bash
+   -----checking model
+   <Response [200]>
+   {'creationTime': '2023-09-22T14:58:45+00:00', 'lastModifiedTime': '2023-09-22T14:58:45+00:00'}
+   -----model updated: "2023-09-22T14:58:45+00:00"
+   -----checking service settings
+   <Response [200]>
+   {'name': '917554355a3347a1af3d2935d521426a', 'arguments': '--cb_explore_adf --epsilon 0.20000000298023224 --power_t 0 -l 0.001 --cb_type mtr -q ::'}
+   <Response [200]>
+   {'rewardWaitTime': 'PT10M', 'defaultReward': 0.0, 'rewardAggregation': 'earliest', 'explorationPercentage': 0.2, 'modelExportFrequency': 'PT15S', 'logRetentionDays': 90, 'lastConfigurationEditDate': '2021-01-01T00:00:00', 'learningMode': 'Online'}
+   User count 4
+   Coffee count 4
+   ```
 
 1. The response code should be `<Response [200]>` to indicate a successful call. The **rewardWaitTime** should show as 10 minutes and **modelExportFrequency** should be 15 seconds.
 
@@ -352,7 +350,7 @@ Your code makes requests to the API. To get a good metric your requests, you can
 
 1. Select **Metrics** under Monitoring in the navigation pane.
 
-    ![A screenshot of the metric chart.](../media/ai-personalizer/8-create-metric-chart.png)
+   ![A screenshot of the metric chart.](../media/ai-personalizer/8-create-metric-chart.png)
 
 1. The **Scope** and **Metric** namespace are already set for you. You only need to select the **Metric** of **Successful calls** and the **Aggregation** of **Sum**.
 
@@ -364,12 +362,12 @@ Next, you add code to generate a unique ID for each rank API call. You use this 
 
 1. To do this, create a new code cell in your notebook and add the following:
 
-    ```python
-    def add_event_id(rankjsonobj):
-        eventid = uuid.uuid4().hex
-        rankjsonobj["eventId"] = eventid
-        return eventid
-    ```
+   ```python
+   def add_event_id(rankjsonobj):
+       eventid = uuid.uuid4().hex
+       rankjsonobj["eventId"] = eventid
+       return eventid
+   ```
 
 1. Remember to run your new code cell.
 
@@ -385,14 +383,14 @@ Now can you add a function to:
 
 To do this, add the following code to a new cell and run it:
 
-  ```python
-  def add_random_user_and_contextfeatures(namesoption, weatheropt, timeofdayopt, rankjsonobj):
-      name = namesoption[random.randint(0,3)]
-      weather = weatheropt[random.randint(0,2)]
-      timeofday = timeofdayopt[random.randint(0,2)]
-      rankjsonobj['contextFeatures'] = [{'timeofday': timeofday, 'weather': weather, 'name': name}]
-      return [name, weather, timeofday]
-  ```
+```python
+def add_random_user_and_contextfeatures(namesoption, weatheropt, timeofdayopt, rankjsonobj):
+    name = namesoption[random.randint(0,3)]
+    weather = weatheropt[random.randint(0,2)]
+    timeofday = timeofdayopt[random.randint(0,2)]
+    rankjsonobj['contextFeatures'] = [{'timeofday': timeofday, 'weather': weather, 'name': name}]
+    return [name, weather, timeofday]
+```
 
 ## Add coffee data
 
@@ -411,18 +409,18 @@ You can then create a function to compare a user's preference for a particular c
 
 1. To do this, create a new cell, add the following code, and run it:
 
-    ```python
-    def get_reward_from_simulated_data(name, weather, timeofday, prediction):
-        if(userpref[name][weather][timeofday] == str(prediction)):
-            return 1
-        return 0
-    ```
+   ```python
+   def get_reward_from_simulated_data(name, weather, timeofday, prediction):
+       if(userpref[name][weather][timeofday] == str(prediction)):
+           return 1
+       return 0
+   ```
 
-1. This function is intended to run after every time the Rank API is called. If the suggestion matches, a score of `1` is returned in the response. If doesn't match, then  `0` will be returned.
+1. This function is intended to run after every time the Rank API is called. If the suggestion matches, a score of `1` is returned in the response. If doesn't match, then `0` will be returned.
 
 ## Create a loop with calls to the Rank and Reward APIs
 
-The previous cells are used to set up your notebook for the loop. You'll now configure your loop. The loop covers the main body of work in your notebook. It gets a random user, gets the coffee list, and send them both to the Rank API. It compares the prediction from Azure AI Personalizer with that user's known perferences, and then sends the reward back again to Azure AI Personalizer. 
+The previous cells are used to set up your notebook for the loop. You'll now configure your loop. The loop covers the main body of work in your notebook. It gets a random user, gets the coffee list, and send them both to the Rank API. It compares the prediction from Azure AI Personalizer with that user's known perferences, and then sends the reward back again to Azure AI Personalizer.
 
 To create your loop, add the following code to a new cell and run it:
 
@@ -556,7 +554,7 @@ Each loop iteration will display the randomly selected user, weather, and time o
 1 Alice Rainy Morning Latte 1
 ```
 
-A reward of `1` means your Azure AI Personalizer resource has selected the correct coffee type for this particular combination of  user, weather, and time of day.
+A reward of `1` means your Azure AI Personalizer resource has selected the correct coffee type for this particular combination of user, weather, and time of day.
 
 ## Run the loop and view chart results
 
@@ -564,41 +562,41 @@ Azure AI Personalizer needs a few thousand calls to the Rank API and the Reward 
 
 1. To do this, create a new code cell, add the following code and run it:
 
-    ```python
-    # max iterations
-    num_requests = 150
-    
-    # check last mod date N% of time - currently 10%
-    lastModCheck = int(num_requests * .10)
-    
-    jsonTemplate = rankactionsjsonobj
-    
-    # main iterations
-    [count, rewards] = iterations(num_requests, lastModCheck, jsonTemplate)
-    ```
+   ```python
+   # max iterations
+   num_requests = 150
+
+   # check last mod date N% of time - currently 10%
+   lastModCheck = int(num_requests * .10)
+
+   jsonTemplate = rankactionsjsonobj
+
+   # main iterations
+   [count, rewards] = iterations(num_requests, lastModCheck, jsonTemplate)
+   ```
 
 1. Refresh your metrics chart in the Azure portal every so often to see the total calls to the service.
 1. This event can run for a while. Don't close your notebook until it has finished. When the loop as made around 20,000 calls - a rank and reward call for each iteration of the loop - the loop will finish.
 
 1. Next, you create a chart in your notebook to plot the batches of rank events, and how many correct recommendations were made for each batch. To do this, add the following code in a new cell and run it:
 
-    ```python
-    def createChart(x, y):
-        plt.plot(x, y)
-        plt.xlabel("Batch of rank events")
-        plt.ylabel("Correct recommendations per batch")
-        plt.show()
+   ```python
+   def createChart(x, y):
+       plt.plot(x, y)
+       plt.xlabel("Batch of rank events")
+       plt.ylabel("Correct recommendations per batch")
+       plt.show()
 
-    createChart(count,rewards)
-    ```
+   createChart(count,rewards)
+   ```
 
 1. Your notebook will create a chart:
 
-    ![A screenshot of the chart.](../media/ai-personalizer/7-chart2.png)
+   ![A screenshot of the chart.](../media/ai-personalizer/7-chart2.png)
 
 > **Tip:** Ideally, once testing has finished, your loop should on average make correct recommendations at a rate of 100 percent minus the exploration value (which is 20% by default), so 80% is your target rate here. A way to get to this is to increase the iterations to at least 10,000.
 
-The chart displays how successful your model is based on the default learning policy.  This chart shows that the learning policy can be improved. You can do this by changing the policy after running evaluations.
+The chart displays how successful your model is based on the default learning policy. This chart shows that the learning policy can be improved. You can do this by changing the policy after running evaluations.
 
 ## Run an offline evaluation
 
@@ -610,18 +608,20 @@ You can run an offline evaluation to find a better learning policy for an Azure 
 1. In the Azure portal, go to your Azure AI Personalizer resource's Optimize pane and select **Create evaluation**.
 1. Provide an evaluation name, and select a start and end date range for your loop evaluation. Your date range should include only the days you are focusing on for your evaluation:
 
-    ![A screenshot showing the evaluation form.](../media/ai-personalizer/7-evaluation-form.png)
+   ![A screenshot showing the evaluation form.](../media/ai-personalizer/7-evaluation-form.png)
+
 1. Select **Start evaluation** to begin your evaluation.
 
 1. When your evaluation has completed, select it from the list of evaluations on the Optimize pane. Then review the performance of your learning policies based on details like their average reward, confidence intervals, and more:
 
-    ![A screenshot showing evaluation results.](../media/ai-personalizer/7-offline-eval-result.png)
+   ![A screenshot showing evaluation results.](../media/ai-personalizer/7-offline-eval-result.png)
+
 1. You'll see a few policies including:
 
-    - **Online** - Your Azure AI Personalizer's current policy.
-    - **Baseline1** - Your app's baseline policy
-    - **BaselineRand** - A policy of taking actions at random.
-    - **Inter-len#** or **Hyper#** - Policies created by Optimization discovery.
+   - **Online** - Your Azure AI Personalizer's current policy.
+   - **Baseline1** - Your app's baseline policy
+   - **BaselineRand** - A policy of taking actions at random.
+   - **Inter-len#** or **Hyper#** - Policies created by Optimization discovery.
 
 1. Select **Apply** on the policy that improves the model best.
 
@@ -632,4 +632,3 @@ If you're not using the Azure resources created in this lab for other training m
 1. Open the Azure portal at `https://portal.azure.com`, and in the top search bar, search for the resources you created in this lab.
 
 2. On the resource page, select **Delete** and follow the instructions to delete the resource. Alternatively, you can delete the entire resource group to clean up all resources at the same time.
-
