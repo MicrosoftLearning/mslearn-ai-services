@@ -2,6 +2,8 @@
 lab:
   title: "Use AI Personalizer with Visual Studio Code Notebooks to simulate a loop"
 ---
+> **Important**
+>  As of fall 2023, new Personalizer resources can no longer be created.
 
 > **Note**
 > To complete this exercise, you will need an [Azure subscription](https://azure.microsoft.com/free?azure-portal=true).
