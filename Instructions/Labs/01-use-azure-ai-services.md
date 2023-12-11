@@ -24,21 +24,22 @@ Open up a new browser tab to work with Cloud Shell. If you haven't cloned this r
 
 5. Once the terminal starts, enter the following command to download the sample application and save it to a folder called `labs`.
 
-    ```bash
+   ```bash
+   rm -r labs -f 
    git clone https://github.com/MicrosoftLearning/mslearn-ai-services labs
-    ```
+   ```
   
 6. The files are downloaded to a folder named **labs**. Navigate to the lab files for this exercise using the following command.
 
-    ```bash
+   ```bash
    cd labs/Labfiles/01-use-azure-ai-services
-    ```
+   ```
 
 Use the following command to open the lab files in the built-in code editor.
 
-```bash
-code .
-```
+   ```bash
+   code .
+   ```
 
 Code for both C# and Python has been provided. Navigate to the folder of your preferred language.
 
@@ -88,14 +89,14 @@ The Azure AI services APIs are REST-based, so you can consume them by submitting
 
     **C#**
 
-    ```
+    ```csharp
     cd C-Sharp/rest-client
     dotnet run
     ```
 
     **Python**
 
-    ```
+    ```python
     cd Python/rest-client
     pip install python-dotenv
     python rest-client.py
@@ -114,13 +115,15 @@ You can write code that consumes Azure AI services REST APIs directly, but there
 
     **C#**
 
-    ```
+    ```csharp
+    cd C-Sharp/sdk-client
     dotnet add package Azure.AI.TextAnalytics --version 5.3.0
     ```
 
     **Python**
 
-    ```
+    ```python
+    cd Python/sdk-client
     pip install azure-ai-textanalytics==5.3.0
     ```
 
@@ -129,7 +132,7 @@ You can write code that consumes Azure AI services REST APIs directly, but there
     - **Python**: .env
 
     Open the configuration file and update the configuration values it contains to reflect the **endpoint** and an authentication **key** for your Azure AI services resource. Save your changes.
-    
+
 4. Note that the **sdk-client** folder contains a code file for the client application:
 
     - **C#**: Program.cs
@@ -144,13 +147,13 @@ You can write code that consumes Azure AI services REST APIs directly, but there
 
     **C#**
 
-    ```
+    ```csharp
     dotnet run
     ```
 
     **Python**
 
-    ```
+    ```python
     python sdk-client.py
     ```
 

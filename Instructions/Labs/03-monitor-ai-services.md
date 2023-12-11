@@ -25,20 +25,21 @@ Open up a new browser tab to work with Cloud Shell. If you haven't cloned this r
 5. Once the terminal starts, enter the following command to download the sample application and save it to a folder called `labs`.
 
     ```bash
-   git clone https://github.com/MicrosoftLearning/mslearn-ai-services labs
+    rm -r labs -f 
+    git clone https://github.com/MicrosoftLearning/mslearn-ai-services labs
     ```
   
 6. The files are downloaded to a folder named **labs**. Navigate to the lab files for this exercise using the following command.
 
     ```bash
-   cd labs/Labfiles/03-monitor-ai-services
+    cd labs/Labfiles/03-monitor-ai-services
     ```
 
 Use the following command to open the lab files in the built-in code editor.
 
-```bash
-code .
-```
+   ```bash
+   code .
+   ```
 
 ## Provision an Azure AI Services resource
 
@@ -71,7 +72,7 @@ Let's start monitoring by defining an alert rule so you can detect activity in y
 10. Review the configuration for the alert. Select **Create** and wait for the alert rule to be created.
 11. Now you can use the following command to get the list of Azure AI services keys, replacing *&lt;resourceName&gt;* with the name of your Azure AI services resource, and *&lt;resourceGroup&gt;* with the name of the resource group in which you created it.
 
-    ```
+    ```bash
     az cognitiveservices account keys list --name <resourceName> --resource-group <resourceGroup>
     ```
 
@@ -89,13 +90,13 @@ As well as defining alerts, you can view metrics for your Azure AI services reso
 3. In the **Aggregation** list, select **Count**.  This will enable you to monitor the total calls to you Azure AI Service resource; which is useful in determining how much the service is being used over a period of time.
 4. To generate some requests to your Azure AI service, you will use **curl** - a command line tool for HTTP requests. In your editor, open **rest-test.sh** and edit the **curl** command it contains (shown below), replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Text Analytics API in your Azure AI services resource.
 
-    ```
+    ```bash
     curl -X POST "<yourEndpoint>/text/analytics/v3.1/languages?" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <yourKey>" --data-ascii "{'documents':           [{'id':1,'text':'hello'}]}"
     ```
 
 5. Save your changes by selecting **CTRL+S**, and then run the following command:
 
-    ```
+    ```bash
     sh rest-test.sh
     ```
 
