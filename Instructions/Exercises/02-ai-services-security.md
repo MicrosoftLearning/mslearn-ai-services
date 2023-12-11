@@ -160,7 +160,7 @@ Now you're ready to use the service principal identity in an application, so it 
 
 > **Note**: In this exercise, we'll store the service principal credentials in the application configuration and use them to authenticate a **ClientSecretCredential** identity in your application code. This is fine for development and testing, but in a real production application, an administrator would assign a *managed identity* to the application so that it uses the service principal identity to access resources, without caching or storing the password.
 
-1. In your terminal, switch to the **C-Sharp** or **Python** folder depending on your language preference. By running `cd C-Sharp` or `cd Python`. Then run `cd keyvault_client` for **C-Sharp** or `cd keyvault-client` for **Python**.
+1. In your terminal, switch to the **C-Sharp** or **Python** folder depending on your language preference by running `cd C-Sharp` or `cd Python`. Then run `cd keyvault_client` to navigate to the app folder.
 2. Install the packages you will need to use for Azure Key Vault and the Text Analytics API in your Azure AI services resource by running the appropriate command for your language preference:
 
     **C#**
