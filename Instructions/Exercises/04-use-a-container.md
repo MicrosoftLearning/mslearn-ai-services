@@ -16,7 +16,7 @@ Many of the Azure AI services APIs can be packaged and deployed in a *container*
 
 You'll develop your code using Visual Studio Code. The code files for your app have been provided in a GitHub repo.
 
-> **Tip**: If you have already cloned the **mslearn-ai-services** repo, open it in Visual Studio code. Othewise, follow these steps to clone it to your development environment.
+> **Tip**: If you have already cloned the **mslearn-ai-services** repo, open it in Visual Studio code. Otherwise, follow these steps to clone it to your development environment.
 
 1. Start Visual Studio Code.
 2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/mslearn-ai-services` repository to a local folder (it doesn't matter which folder).
