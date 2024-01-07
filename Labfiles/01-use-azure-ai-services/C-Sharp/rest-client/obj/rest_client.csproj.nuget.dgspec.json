@@ -1,0 +1,89 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\alton\\Desktop\\LocalCode\\mslearn-ai-services\\Labfiles\\01-use-azure-ai-services\\C-Sharp\\rest-client\\rest_client.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\alton\\Desktop\\LocalCode\\mslearn-ai-services\\Labfiles\\01-use-azure-ai-services\\C-Sharp\\rest-client\\rest_client.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\alton\\Desktop\\LocalCode\\mslearn-ai-services\\Labfiles\\01-use-azure-ai-services\\C-Sharp\\rest-client\\rest_client.csproj",
+        "projectName": "rest_client",
+        "projectPath": "C:\\Users\\alton\\Desktop\\LocalCode\\mslearn-ai-services\\Labfiles\\01-use-azure-ai-services\\C-Sharp\\rest-client\\rest_client.csproj",
+        "packagesPath": "C:\\Users\\alton\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\alton\\Desktop\\LocalCode\\mslearn-ai-services\\Labfiles\\01-use-azure-ai-services\\C-Sharp\\rest-client\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\alton\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.14, 7.0.14]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[7.0.14, 7.0.14]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.14, 7.0.14]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.14, 7.0.14]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

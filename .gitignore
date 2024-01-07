@@ -1,0 +1,9 @@
+# Can be re-constructed via the commands
+# 1: > python -m venv --upgrade-deps ./env
+# 2: > pip install -r ./env/requirements.txt
+env/*
+!env/requirements.txt
+
+# Security and key info
+.env
+appsettings.json
