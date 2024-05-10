@@ -27,8 +27,6 @@ You'll develop your code using Visual Studio Code. The code files for your app h
 
 5. Expand the `Labfiles/04-use-a-container` folder.
 
-Code for both C# and Python has been provided. Expand the folder of your preferred language.
-
 ## Provision an Azure AI Services resource
 
 If you don't already have one in your subscription, you'll need to provision an **Azure AI Services** resource.
