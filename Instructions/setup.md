@@ -12,7 +12,7 @@ Exercises are intended to be completed in a hosted lab environment. If you want 
 
 ### Base Operating System (Windows 11)
 
-#### Windows 10
+#### Windows 11
 
 Install Windows 11 and apply all updates.
 
@@ -22,7 +22,7 @@ Install [Edge (Chromium)](https://microsoft.com/edge)
 
 ### .NET Core SDK
 
-1. Download and install from https://dotnet.microsoft.com/download (download .NET Core SDK - not just the runtime). If you are running the labs in this course on your own machine, you will need .NET 7.0 installed.
+1. Download and install from https://dotnet.microsoft.com/download (download .NET Core SDK - not just the runtime). If you are running the labs in this course on your own machine, you should have .NET 7.0. The labs have been tested against .NET 7.0, but 7.0 is currently out of support. You can use 8.0, but there may be some minor issues. Highly recommended to use the hosted environment.
 
 ### C++ Redistributable
 
