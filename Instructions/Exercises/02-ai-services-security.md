@@ -68,7 +68,7 @@ When you created your Azure AI services resource, two authentication keys were g
 4. Save your changes, and then run the following command:
 
     ```
-    sh rest-test.sh
+    ./rest-test.cmd
     ```
 
 The command returns a JSON document containing information about the language detected in the input data (which should be English).
