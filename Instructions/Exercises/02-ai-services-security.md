@@ -113,7 +113,7 @@ First, you need to create a key vault and add a *secret* for the Azure AI servic
 5. Select **+ Generate/Import** and add a new secret with the following settings :
     - **Upload options**: Manual
     - **Name**: AI-Services-Key *(it's important to match this exactly, because later you'll run code that retrieves the secret based on this name)*
-    - **Value**: *Your **key1** Azure AI services key*
+    - **Secret value**: *Your **key1** Azure AI services key*
 6. Select **Create**.
 
 ### Create a service principal
@@ -167,16 +167,16 @@ Now you're ready to use the service principal identity in an application, so it 
 
     ```
     dotnet add package Azure.AI.TextAnalytics --version 5.3.0
-    dotnet add package Azure.Identity --version 1.5.0
-    dotnet add package Azure.Security.KeyVault.Secrets --version 4.2.0-beta.3
+    dotnet add package Azure.Identity --version 1.12.0
+    dotnet add package Azure.Security.KeyVault.Secrets --version 4.6.0
     ```
 
     **Python**
 
     ```
     pip install azure-ai-textanalytics==5.3.0
-    pip install azure-identity==1.5.0
-    pip install azure-keyvault-secrets==4.2.0
+    pip install azure-identity==1.17.1
+    pip install azure-keyvault-secrets==4.8.0
     ```
 
 3. View the contents of the **keyvault-client** folder, and note that it contains a file for configuration settings:
