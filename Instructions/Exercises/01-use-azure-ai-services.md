@@ -30,18 +30,36 @@ Code for both C# and Python has been provided. Expand the folder of your preferr
 Azure AI Services are cloud-based services that encapsulate artificial intelligence capabilities you can incorporate into your applications. You can provision individual Azure AI services resources for specific APIs (for example, **Language** or **Vision**), or you can provision a single **Azure AI Services** resource that provides access to multiple Azure AI services APIs through a single endpoint and key. In this case, you'll use a single **Azure AI Services** resource.
 
 1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
-2. In the top search bar, search for *Azure AI services*, select **Azure AI Services**, and create an Azure AI services multi-service account resource with the following settings:
+1. In the top **Azure services** bar, select **Create a resource**, search for *Azure AI services*, select **Azure AI Services**, and create an Azure AI services multi-service account resource with the following settings:
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
     - **Region**: *Choose any available region*
     - **Name**: *Enter a unique name*
     - **Pricing tier**: Standard S0
-3. Select the required checkboxes and create the resource.
-4. Wait for deployment to complete, and then view the deployment details.
-5. Go to the resource and view its **Keys and Endpoint** page. This page contains the information that you will need to connect to your resource and use it from applications you develop. Specifically:
+1. Select the required checkboxes and create the resource.
+1. Wait for deployment to complete, and then view the deployment details.
+1. Go to the resource and view its **Keys and Endpoint** page. This page contains the information that you will need to connect to your resource and use it from applications you develop. Specifically:
     - An HTTP *endpoint* to which client applications can send requests.
     - Two *keys* that can be used for authentication (client applications can use either key to authenticate).
     - The *location* where the resource is hosted. This is required for requests to some (but not all) APIs.
+
+## Use Azure AI Studio
+
+Azure AI Studio enables developers to explore the capabilities of Azure AI in a safe and secure graphical interface.
+
+1. In a browser, navigate to **https://ai.azure.com** and log on, if necessary.
+1. On the left navigation bar, select **AI Services**.
+1. Select **Content Safety**.
+1. Select **Moderate text content**.
+1. Select **Create a new Azure AI resource**.
+1. Check the values for the new hub and select **Next**.
+1. Select **Create**.
+1. On the left navigation bar, select **AI Services**.
+1. Select **Content Safety**.
+1. Select **Moderate text content**.
+1. In **Azure AI Services**, ensure that your new hub is selected and select **Multiple risk categories in one sentence**.
+1. Select **Run test** and view the results.
+1. Select **</> View code>** to see content safety code in C# or Python.
 
 ## Use a REST Interface
 

@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Labfiles", "Labfiles", "{FE216042-7B8F-461E-9E95-4B88F9ED2077}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-use-azure-ai-services", "01-use-azure-ai-services", "{C56C0374-07AF-448D-B7B5-8189DCFC2E85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "C-Sharp", "C-Sharp", "{C2E596F8-6C80-47C0-9E3D-E924D7A9184F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rest_client", "Labfiles\01-use-azure-ai-services\C-Sharp\rest-client\rest_client.csproj", "{411C6E7C-BC50-42AD-9DC0-20FDFE23C667}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sdk-client", "Labfiles\01-use-azure-ai-services\C-Sharp\sdk-client\sdk-client.csproj", "{52A02427-F053-47B8-B17E-ED0FFA692EF7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-ai-services-security", "02-ai-services-security", "{6FD19D0C-AE30-4E8E-86B8-B701752F0871}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "C-Sharp", "C-Sharp", "{867877E4-F99C-4251-9F6B-A41AE9F5F037}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "keyvault_client", "Labfiles\02-ai-services-security\C-Sharp\keyvault_client\keyvault_client.csproj", "{DABE476A-D48B-4636-BE1B-4833A91856AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{411C6E7C-BC50-42AD-9DC0-20FDFE23C667}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{411C6E7C-BC50-42AD-9DC0-20FDFE23C667}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{411C6E7C-BC50-42AD-9DC0-20FDFE23C667}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{411C6E7C-BC50-42AD-9DC0-20FDFE23C667}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52A02427-F053-47B8-B17E-ED0FFA692EF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52A02427-F053-47B8-B17E-ED0FFA692EF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52A02427-F053-47B8-B17E-ED0FFA692EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52A02427-F053-47B8-B17E-ED0FFA692EF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DABE476A-D48B-4636-BE1B-4833A91856AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DABE476A-D48B-4636-BE1B-4833A91856AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DABE476A-D48B-4636-BE1B-4833A91856AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DABE476A-D48B-4636-BE1B-4833A91856AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C56C0374-07AF-448D-B7B5-8189DCFC2E85} = {FE216042-7B8F-461E-9E95-4B88F9ED2077}
+		{C2E596F8-6C80-47C0-9E3D-E924D7A9184F} = {C56C0374-07AF-448D-B7B5-8189DCFC2E85}
+		{411C6E7C-BC50-42AD-9DC0-20FDFE23C667} = {C2E596F8-6C80-47C0-9E3D-E924D7A9184F}
+		{52A02427-F053-47B8-B17E-ED0FFA692EF7} = {C2E596F8-6C80-47C0-9E3D-E924D7A9184F}
+		{6FD19D0C-AE30-4E8E-86B8-B701752F0871} = {FE216042-7B8F-461E-9E95-4B88F9ED2077}
+		{867877E4-F99C-4251-9F6B-A41AE9F5F037} = {6FD19D0C-AE30-4E8E-86B8-B701752F0871}
+		{DABE476A-D48B-4636-BE1B-4833A91856AB} = {867877E4-F99C-4251-9F6B-A41AE9F5F037}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6093FB39-C412-4179-A485-6E282DF37D35}
+	EndGlobalSection
+EndGlobal
