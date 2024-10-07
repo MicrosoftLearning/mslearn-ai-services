@@ -42,9 +42,9 @@ If you don't already have one in your subscription, you'll need to provision an 
 4. Wait for deployment to complete, and then view the deployment details.
 5. When the resource has been deployed, go to it and view its **Keys and Endpoint** page. You will need the endpoint and one of the keys from this page in the next procedure.
 
-## Deploy and run a Text Analytics container
+## Deploy and run a Sentiment Analysis container
 
-Many commonly used Azure AI services APIs are available in container images. For a full list, check out the [Azure AI services documentation](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-container-support#container-availability-in-azure-cognitive-services). In this exercise, you'll use the container image for the Text Analytics *language detection* API; but the principles are the same for all of the available images.
+Many commonly used Azure AI services APIs are available in container images. For a full list, check out the [Azure AI services documentation](https://learn.microsoft.com/en-us/azure/ai-services/cognitive-services-container-support#containers-in-azure-ai-services). In this exercise, you'll use the container image for the Text Analytics *Sentiment analysis* API; but the principles are the same for all of the available images.
 
 1. In the Azure portal, on the **Home** page, select the **&#65291;Create a resource** button, search for *container instances*, and create a **Container Instances** resource with the following settings:
 
@@ -53,11 +53,13 @@ Many commonly used Azure AI services APIs are available in container images. For
         - **Resource group**: *Choose the resource group containing your Azure AI services resource*
         - **Container name**: *Enter a unique name*
         - **Region**: *Choose any available region*
+        - **Availability zones**: None
+        - **SKU**: Standard
         - **Image source**: Other Registry
         - **Image type**: Public
-        - **Image**: `mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest`
+        - **Image**: `mcr.microsoft.com/azure-cognitive-services/textanalytics/sentiment:latest`
         - **OS type**: Linux
-        - **Size**: 1 vcpu, 12 GB memory
+        - **Size**: 1 vcpu, 8 GB memory
     - **Networking**:
         - **Networking type**: Public
         - **DNS name label**: *Enter a unique name for the container endpoint*
@@ -73,6 +75,7 @@ Many commonly used Azure AI services APIs are available in container images. For
             | No | `Eula` | `accept` |
 
         - **Command override**: [ ]
+        - **Key management**: Microsoft-managed keys (MMK)
     - **Tags**:
         - *Don't add any tags*
 
@@ -83,11 +86,11 @@ Many commonly used Azure AI services APIs are available in container images. For
     - **IP Address**: This is the public IP address you can use to access your container instances.
     - **FQDN**: This is the *fully-qualified domain name* of the container instances resource, you can use this to access the container instances instead of the IP address.
 
-    > **Note**: In this exercise, you've deployed the Azure AI services container image for text translation to an Azure Container Instances (ACI) resource. You can use a similar approach to deploy it to a *[Docker](https://www.docker.com/products/docker-desktop)* host on your own computer or network by running the following command (on a single line) to deploy the language detection container to your local Docker instance, replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and either of the keys for your Azure AI services resource.
+    > **Note**: In this exercise, you've deployed the Azure AI services container image for sentiment analysis to an Azure Container Instances (ACI) resource. You can use a similar approach to deploy it to a *[Docker](https://www.docker.com/products/docker-desktop)* host on your own computer or network by running the following command (on a single line) to deploy the sentiment analysis container to your local Docker instance, replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and either of the keys for your Azure AI services resource.
     > The command will look for the image on your local machine, and if it doesn't find it there it will pull it from the *mcr.microsoft.com* image registry and deploy it to your Docker instance. When deployment is complete, the container will start and listen for incoming requests on port 5000.
 
     ```
-    docker run --rm -it -p 5000:5000 --memory 12g --cpus 1 mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest Eula=accept Billing=<yourEndpoint> ApiKey=<yourKey>
+    docker run --rm -it -p 5000:5000 --memory 8g --cpus 1 mcr.microsoft.com/azure-cognitive-services/textanalytics/sentiment:latest Eula=accept Billing=<yourEndpoint> ApiKey=<yourKey>
     ```
 
 ## Use the container
@@ -95,7 +98,7 @@ Many commonly used Azure AI services APIs are available in container images. For
 1. In your editor, open **rest-test.cmd** and edit the **curl** command it contains (shown below), replacing *&lt;your_ACI_IP_address_or_FQDN&gt;* with the IP address or FQDN for your container.
 
     ```
-    curl -X POST "http://<your_ACI_IP_address_or_FQDN>:5000/text/analytics/v3.0/languages" -H "Content-Type: application/json" --data-ascii "{'documents':[{'id':1,'text':'Hello world.'},{'id':2,'text':'Salut tout le monde.'}]}"
+    curl -X POST "http://<your_ACI_IP_address_or_FQDN>:5000/text/analytics/v3.1/sentiment" -H "Content-Type: application/json" --data-ascii "{'documents':[{'id':1,'text':'The performance was amazing! The sound could have been clearer.'},{'id':2,'text':'The food and service were unacceptable. While the host was nice, the waiter was rude and food was cold.'}]}"
     ```
 
 2. Save your changes to the script by pressing **CTRL+S**. Note that you do not need to specify the Azure AI services endpoint or key - the request is processed by the containerized service. The container in turn communicates periodically with the service in Azure to report usage for billing, but does not send request data.
@@ -105,7 +108,7 @@ Many commonly used Azure AI services APIs are available in container images. For
     ./rest-test.cmd
     ```
 
-4. Verify that the command returns a JSON document containing information about the language detected in the two input documents (which should be English and French).
+4. Verify that the command returns a JSON document containing information about the sentiment detected in the two input documents (which should be postive and negative, in that order).
 
 ## Clean Up
 
