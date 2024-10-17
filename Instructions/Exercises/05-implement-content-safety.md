@@ -1,4 +1,9 @@
-# Implementing Azure AI Content Safety
+---
+lab:
+    title: 'Implement Azure AI Content Safety'
+---
+
+# Implement Azure AI Content Safety
 
 In this exercise, you will provision a Content Safety resource, test the resource in Azure AI Studio, and test the resource in code.
 
