@@ -10,8 +10,6 @@ Using Azure AI services hosted in Azure enables application developers to focus 
 
 Many of the Azure AI services APIs can be packaged and deployed in a *container*, enabling organizations to host Azure AI services in their own infrastructure; for example in local Docker servers, Azure Container Instances, or Azure Kubernetes Services clusters. Containerized Azure AI services need to communicate with an Azure-based Azure AI services account to support billing; but application data is not passed to the back-end service, and organizations have greater control over the deployment configuration of their containers, enabling custom solutions for authentication, scalability, and other considerations.
 
-> **Note**: There is an issue currently being investigated that some users hit where containers won't deploy properly, and calls to those containers fail. Updates to this lab will be made as soon as the issue has been resolved.
-
 ## Clone the repository in Visual Studio Code
 
 You'll develop your code using Visual Studio Code. The code files for your app have been provided in a GitHub repo.
