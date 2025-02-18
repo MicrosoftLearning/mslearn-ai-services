@@ -29,7 +29,7 @@ If you don't already have one, you'll need to provision a **Content Safety** res
 
 ## Use Azure AI Content Safety Prompt Shields
 
-In this exercise you will use Azure AI Studio to test Content Safety Prompt Sheilds with two sample inputs. One simulates a user prompt, and the other simulates a document with potentially unsafe text embedded into it.
+In this exercise you will use Azure AI Studio to test Content Safety Prompt Shields with two sample inputs. One simulates a user prompt, and the other simulates a document with potentially unsafe text embedded into it.
 
 1. In another browser tab, open the Content Safety page of [Azure AI Studio](https://ai.azure.com/explore/contentsafety) and sign in.
 1. Under **Moderate text content** select **Try it out**.
