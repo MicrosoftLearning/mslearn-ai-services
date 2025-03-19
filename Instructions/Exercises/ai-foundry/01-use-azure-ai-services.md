@@ -45,7 +45,7 @@ The Azure AI services APIs are REST-based, so you can consume them by submitting
     git clone https://github.com/microsoftlearning/mslearn-ai-services mslearn-ai-services
     ```
 
-> **Note**: In this exercise, you can choose to use the REST API from either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
+    > **Note**: In this exercise, you can choose to use the REST API from either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
 
 1. After the repo has been cloned, navigate to the folder containing the application code files:  
 
