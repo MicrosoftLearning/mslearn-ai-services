@@ -10,29 +10,12 @@ Security is a critical consideration for any application, and as a developer you
 
 Access to Azure AI services is typically controlled through authentication keys, which are generated when you initially create an Azure AI services resource.
 
-## Clone the repository in Visual Studio Code
-
-You'll develop your code using Visual Studio Code. The code files for your app have been provided in a GitHub repo.
-
-> **Tip**: If you have already cloned the **mslearn-ai-services** repo recently, open it in Visual Studio code. Otherwise, follow these steps to clone it to your development environment.
-
-1. Start Visual Studio Code.
-2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/mslearn-ai-services` repository to a local folder (it doesn't matter which folder).
-3. When the repository has been cloned, open the folder in Visual Studio Code.
-4. Wait while additional files are installed to support the C# code projects in the repo, if necessary
-
-    > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**.
-
-5. Expand the `Labfiles/02-ai-services-security` folder.
-
-Code for both C# and Python has been provided. Expand the folder of your preferred language.
-
 ## Provision an Azure AI Services resource
 
 If you don't already have one in your subscription, you'll need to provision an **Azure AI Services** resource.
 
 1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
-2. In the top search bar, search for *Azure AI services*, select **Azure AI Services**, and create an Azure AI services multi-service account resource with the following settings:
+2. In the top search bar, search for *Azure AI services*, select **Azure AI services multi-service account**, and create a resource with the following settings:
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
     - **Region**: *Choose any available region*
@@ -40,6 +23,33 @@ If you don't already have one in your subscription, you'll need to provision an 
     - **Pricing tier**: Standard S0
 3. Select the required checkboxes and create the resource.
 4. Wait for deployment to complete, and then view the deployment details.
+
+## Clone the repository in Cloud Shell
+
+You'll develop your code using Cloud Shell from the Azure Portal. The code files for your app have been provided in a GitHub repo.
+
+> **Tip**: If you have already cloned the **mslearn-ai-services** repo recently, you can skip this task. Otherwise, follow these steps to clone it to your development environment.
+
+1. In the Azure Portal, use the **[\>_]** button to the right of the search bar at the top of the page to create a new Cloud Shell in the Azure portal, selecting a ***PowerShell*** environment. The cloud shell provides a command line interface in a pane at the bottom of the Azure portal.
+
+    > **Note**: If you have previously created a cloud shell that uses a *Bash* environment, switch it to ***PowerShell***.
+
+1. In the cloud shell toolbar, in the **Settings** menu, select **Go to Classic version** (this is required to use the code editor).
+
+    > **Tip**: As you paste commands into the cloudshell, the ouput may take up a large amount of the screen buffer. You can clear the screen by entering the `cls` command to make it easier to focus on each task.
+
+1. In the PowerShell pane, enter the following commands to clone the GitHub repo for this exercise:
+
+    ```
+    rm -r mslearn-ai-services -f
+    git clone https://github.com/microsoftlearning/mslearn-ai-services mslearn-ai-services
+    ```
+
+1. After the repo has been cloned, navigate to the folder containing the application code files:  
+
+    ```
+   cd mslearn-ai-services/Labfiles/02-ai-services-security
+    ```
 
 ## Manage authentication keys
 
@@ -52,7 +62,7 @@ When you created your Azure AI services resource, two authentication keys were g
     - Two *keys* that can be used for authentication (client applications can use either of the keys. A common practice is to use one for development, and another for production. You can easily regenerate the development key after developers have finished their work to prevent continued access).
     - The *location* where the resource is hosted. This is required for requests to some (but not all) APIs.
 
-    **Using the Command Line**: Alternatively you can use the following command to get the list of Azure AI services keys. In Visual Studio Code, open a new terminal. Then paste in the following command; replacing *&lt;resourceName&gt;* with the name of your Azure AI services resource, and *&lt;resourceGroup&gt;* with the name of the resource group in which you created it.
+    **Using the Command Line**: Alternatively you can use the following command to get the list of Azure AI services keys. In the Cloud Shell, paste in the following command; replacing *&lt;resourceName&gt;* with the name of your Azure AI services resource, and *&lt;resourceGroup&gt;* with the name of the resource group in which you created it.
 
     ```
     az cognitiveservices account keys list --name <resourceName> --resource-group <resourceGroup>
@@ -60,15 +70,23 @@ When you created your Azure AI services resource, two authentication keys were g
 
     The command returns a list of the keys for your Azure AI services resource - there are two keys, named **key1** and **key2**.
 
-    > **Tip**: If you haven't authenticated Azure CLI yet, first run `az login` and sign into your account.
+    > **Tip**: If you have authentication issues, first run `az login` and sign into your account.
 
-2. To test your Azure AI service, you can use **curl** - a command line tool for HTTP requests. In the **02-ai-services-security** folder, open **rest-test.cmd** and edit the **curl** command it contains (shown below), replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Analyze Text API in your Azure AI services resource.
+    To test your Azure AI service, you can use **curl** - a command line tool for HTTP requests.
+
+2. Enter the following command to open **rest-test.cmd**:
+
+    ```
+   code rest-test.cmd
+    ```
+
+3. Edit the **curl** command in the file, replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Analyze Text API in your Azure AI services resource.
 
     ```bash
     curl -X POST "<yourEndpoint>/language/:analyze-text?api-version=2023-04-01" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <your-key>" --data-ascii "{'analysisInput':{'documents':[{'id':1,'text':'hello'}]}, 'kind': 'LanguageDetection'}"
     ```
 
-3. Save your changes. In the terminal, navigate to the "02-ai-services-security" folder. (**Note**: you can do this by right clicking on the 02-ai-services-security" folder in your explorer, and selecting *Open in Integrated Terminal*). Then run the following command:
+4. 1. After you've replaced the placeholders, use the **CTRL+S** command to save your changes and then use the **CTRL+Q** command to close the code editor while keeping the cloud shell command line open. Then run the following command:
 
     ```
     ./rest-test.cmd
@@ -76,7 +94,7 @@ When you created your Azure AI services resource, two authentication keys were g
 
 The command returns a JSON document containing information about the language detected in the input data (which should be English).
 
-4. If a key becomes compromised, or the developers who have it no longer require access, you can regenerate it in the portal or by using the Azure CLI. Run the following command to regenerate your **key1** key (replacing *&lt;resourceName&gt;* and *&lt;resourceGroup&gt;* for your resource).
+5. If a key becomes compromised, or the developers who have it no longer require access, you can regenerate it in the portal or by using the Azure CLI. Run the following command to regenerate your **key1** key (replacing *&lt;resourceName&gt;* and *&lt;resourceGroup&gt;* for your resource).
 
     ```
     az cognitiveservices account keys regenerate --name <resourceName> --resource-group <resourceGroup> --key-name key1
@@ -84,8 +102,8 @@ The command returns a JSON document containing information about the language de
 
 The list of keys for your Azure AI services resource is returned - note that **key1** has changed since you last retrieved them.
 
-5. Re-run the **rest-test** command with the old key (you can use the **^** arrow on your keyboard to cycle through previous commands), and verify that it now fails.
-6. Edit the *curl* command in **rest-test.cmd** replacing the key with the new **key1** value, and save the changes. Then rerun the **rest-test** command and verify that it succeeds.
+6. Re-run the **rest-test** command with the old key (you can use the **^** arrow on your keyboard to cycle through previous commands), and verify that it now fails.
+7. Edit the *curl* command in **rest-test.cmd** replacing the key with the new **key1** value, and save the changes. Then rerun the **rest-test** command and verify that it succeeds.
 
 > **Tip**: In this exercise, you used the full names of Azure CLI parameters, such as **--resource-group**.  You can also use shorter alternatives, such as **-g**, to make your commands less verbose (but a little harder to understand).  The [Azure AI Services CLI command reference](https://docs.microsoft.com/cli/azure/cognitiveservices?view=azure-cli-latest) lists the parameter options for each Azure AI services CLI command.
 
@@ -115,7 +133,7 @@ First, you need to create a key vault and add a *secret* for the Azure AI servic
 4. In the left navigation pane, select **Secrets** (in the Objects section).
 5. Select **+ Generate/Import** and add a new secret with the following settings :
     - **Upload options**: Manual
-    - **Name**: AI-Services-Key *(it's important to match this exactly, because later you'll run code that retrieves the secret based on this name)*
+    - **Name**: `AI-Services-Key` *(it's important to match this exactly, because later you'll run code that retrieves the secret based on this name)*
     - **Secret value**: *Your **key1** Azure AI services key*
 6. Select **Create**.
 
@@ -182,11 +200,11 @@ Now you're ready to use the service principal identity in an application, so it 
     pip install azure-keyvault-secrets==4.8.0
     ```
 
-3. View the contents of the **keyvault-client** folder, and note that it contains a file for configuration settings:
+3. Run the `ls` command to view the contents of the **keyvault-client** folder, and note that it contains a file for configuration settings:
     - **C#**: appsettings.json
     - **Python**: .env
 
-    Open the configuration file and update the configuration values it contains to reflect the following settings:
+    Open the configuration file by running `code appsettings.json` or `code .env` and update the configuration values it contains to reflect the following settings:
     
     - The **endpoint** for your Azure AI Services resource
     - The name of your **Azure Key Vault** resource
@@ -194,7 +212,8 @@ Now you're ready to use the service principal identity in an application, so it 
     - The **appId** for your service principal
     - The **password** for your service principal
 
-     Save your changes by pressing **CTRL+S**.
+     Save your changes by pressing **CTRL+S** and close the code editor by pressing **CTRL+Q**.
+   
 4. Note that the **keyvault-client** folder contains a code file for the client application:
 
     - **C#**: Program.cs
@@ -204,7 +223,7 @@ Now you're ready to use the service principal identity in an application, so it 
     - The namespace for the SDK you installed is imported
     - Code in the **Main** function retrieves the application configuration settings, and then it uses the service principal credentials to get the Azure AI services key from the key vault.
     - The **GetLanguage** function uses the SDK to create a client for the service, and then uses the client to detect the language of the text that was entered.
-5. Enter the following command to run the program:
+5. Close the code editor and enter the following command to run the program:
 
     **C#**
 
@@ -218,8 +237,8 @@ Now you're ready to use the service principal identity in an application, so it 
     python keyvault-client.py
     ```
 
-6. When prompted, enter some text and review the language that is detected by the service. For example, try entering "Hello", "Bonjour", and "Gracias".
-7. When you have finished testing the application, enter "quit" to stop the program.
+7. When prompted, enter some text and review the language that is detected by the service. For example, try entering "Hello", "Bonjour", and "Gracias".
+8. When you have finished testing the application, enter "quit" to stop the program.
 
 ## Clean up resources
 
