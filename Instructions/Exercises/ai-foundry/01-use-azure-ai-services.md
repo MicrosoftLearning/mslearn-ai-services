@@ -26,9 +26,11 @@ Azure AI Services are cloud-based services that encapsulate artificial intellige
     - Two *keys* that can be used for authentication (client applications can use either key to authenticate).
     - The *location* where the resource is hosted. This is required for requests to some (but not all) APIs.
 
-## Use a REST Interface
+## Clone the repository in Cloud Shell
 
-The Azure AI services APIs are REST-based, so you can consume them by submitting JSON requests over HTTP. In this example, you'll explore a console application that uses the **Language** REST API to perform language detection; but the basic principle is the same for all of the APIs supported by the Azure AI Services resource.
+You'll develop your code using Cloud Shell from the Azure Portal. The code files for your app have been provided in a GitHub repo.
+
+> **Tip**: If you have already cloned the **mslearn-ai-services** repo recently, you can skip this task. Otherwise, follow these steps to clone it to your development environment.
 
 1. In the Azure Portal, use the **[\>_]** button to the right of the search bar at the top of the page to create a new Cloud Shell in the Azure portal, selecting a ***PowerShell*** environment. The cloud shell provides a command line interface in a pane at the bottom of the Azure portal.
 
@@ -45,20 +47,30 @@ The Azure AI services APIs are REST-based, so you can consume them by submitting
     git clone https://github.com/microsoftlearning/mslearn-ai-services mslearn-ai-services
     ```
 
-    > **Note**: In this exercise, you can choose to use the REST API from either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
-
 1. After the repo has been cloned, navigate to the folder containing the application code files:  
+
+    ```
+   cd mslearn-ai-services/Labfiles/01-use-azure-ai-services
+    ```
+
+## Use a REST Interface
+
+The Azure AI services APIs are REST-based, so you can consume them by submitting JSON requests over HTTP. In this example, you'll explore a console application that uses the **Language** REST API to perform language detection; but the basic principle is the same for all of the APIs supported by the Azure AI Services resource.
+
+> **Note**: In this exercise, you can choose to use the REST API from either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
+
+1. Navigate to the folder containing the application code files for your preferred language:  
 
     **Python**
 
     ```
-   cd mslearn-ai-services/Labfiles/01-use-azure-ai-services/Python/rest-client
+   cd Python/rest-client
     ```
 
     **C#**
 
     ```
-   cd mslearn-ai-services/Labfiles/01-use-azure-ai-services/C-Sharp/rest-client
+   cd C-Sharp/rest-client
     ```
 
 1. Using the `ls` command, you can view the contents of the **rest-client** folder. Note that it contains a file for configuration settings:
