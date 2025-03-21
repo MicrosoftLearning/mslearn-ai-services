@@ -74,27 +74,15 @@ When you created your Azure AI services resource, two authentication keys were g
 
     To test your Azure AI service, you can use **curl** - a command line tool for HTTP requests.
 
-2. Enter the following command to open **rest-test.cmd**:
-
-    ```
-   code rest-test.cmd
-    ```
-
-3. Edit the **curl** command in the file, replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Analyze Text API in your Azure AI services resource.
+1. Run the **curl** command below, replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Analyze Text API in your Azure AI services resource.
 
     ```bash
     curl -X POST "<yourEndpoint>/language/:analyze-text?api-version=2023-04-01" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <your-key>" --data-ascii "{'analysisInput':{'documents':[{'id':1,'text':'hello'}]}, 'kind': 'LanguageDetection'}"
     ```
 
-4. After you've replaced the placeholders, use the **CTRL+S** command to save your changes and then use the **CTRL+Q** command to close the code editor while keeping the cloud shell command line open. Then run the following command:
-
-    ```
-    ./rest-test.cmd
-    ```
-
 The command returns a JSON document containing information about the language detected in the input data (which should be English).
 
-5. If a key becomes compromised, or the developers who have it no longer require access, you can regenerate it in the portal or by using the Azure CLI. Run the following command to regenerate your **key1** key (replacing *&lt;resourceName&gt;* and *&lt;resourceGroup&gt;* for your resource).
+1. If a key becomes compromised, or the developers who have it no longer require access, you can regenerate it in the portal or by using the Azure CLI. Run the following command to regenerate your **key1** key (replacing *&lt;resourceName&gt;* and *&lt;resourceGroup&gt;* for your resource).
 
     ```
     az cognitiveservices account keys regenerate --name <resourceName> --resource-group <resourceGroup> --key-name key1
@@ -102,8 +90,8 @@ The command returns a JSON document containing information about the language de
 
 The list of keys for your Azure AI services resource is returned - note that **key1** has changed since you last retrieved them.
 
-6. Re-run the **rest-test** command with the old key (you can use the **^** arrow on your keyboard to cycle through previous commands), and verify that it now fails.
-7. Edit the *curl* command in **rest-test.cmd** replacing the key with the new **key1** value, and save the changes. Then rerun the **rest-test** command and verify that it succeeds.
+6. Re-run the **curl** command with the old key (you can use the **^** arrow on your keyboard to cycle through previous commands), and verify that it now fails.
+7. Edit the *curl* command replacing the key with the new **key1** value, and save the changes. Then rerun the **curl** command and verify that it succeeds.
 
 > **Tip**: In this exercise, you used the full names of Azure CLI parameters, such as **--resource-group**.  You can also use shorter alternatives, such as **-g**, to make your commands less verbose (but a little harder to understand).  The [Azure AI Services CLI command reference](https://docs.microsoft.com/cli/azure/cognitiveservices?view=azure-cli-latest) lists the parameter options for each Azure AI services CLI command.
 
