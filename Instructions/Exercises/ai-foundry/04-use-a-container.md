@@ -27,35 +27,6 @@ If you don't already have one in your subscription, you'll need to provision an 
 4. Wait for deployment to complete, and then view the deployment details.
 5. When the resource has been deployed, go to it and view its **Keys and Endpoint** page. You will need the endpoint and one of the keys from this page in the next procedure.
 
-## Clone the repository in Cloud Shell
-
-You'll develop your code using Cloud Shell from the Azure Portal. The code files for your app have been provided in a GitHub repo.
-
-> **Tip**: If you have already cloned the **mslearn-ai-services** repo recently, you can skip this task. Otherwise, follow these steps to clone it to your development environment.
-
-1. In the Azure Portal, use the **[\>_]** button to the right of the search bar at the top of the page to create a new Cloud Shell in the Azure portal, selecting a ***PowerShell*** environment. The cloud shell provides a command line interface in a pane at the bottom of the Azure portal.
-
-    > **Note**: If you have previously created a cloud shell that uses a *Bash* environment, switch it to ***PowerShell***.
-
-1. In the cloud shell toolbar, in the **Settings** menu, select **Go to Classic version** (this is required to use the code editor).
-
-    > **Tip**: As you paste commands into the cloudshell, the ouput may take up a large amount of the screen buffer. You can clear the screen by entering the `cls` command to make it easier to focus on each task.
-
-1. In the PowerShell pane, enter the following commands to clone the GitHub repo for this exercise:
-
-    ```
-    rm -r mslearn-ai-services -f
-    git clone https://github.com/microsoftlearning/mslearn-ai-services mslearn-ai-services
-    ```
-
-1. After the repo has been cloned, navigate to the folder containing the application code files:  
-
-    ```
-   cd mslearn-ai-services/Labfiles/04-use-a-container
-    ```
-    
-    > **Tip**: As you work in the Azure portal, you can minimize the Cloud Shell terminal and open it again when needed.
-
 ## Deploy and run a Sentiment Analysis container
 
 Many commonly used Azure AI services APIs are available in container images. For a full list, check out the [Azure AI services documentation](https://learn.microsoft.com/en-us/azure/ai-services/cognitive-services-container-support#containers-in-azure-ai-services). In this exercise, you'll use the container image for the Text Analytics *Sentiment analysis* API; but the principles are the same for all of the available images.
@@ -108,6 +79,10 @@ Many commonly used Azure AI services APIs are available in container images. For
     ```
 
 ## Use the container
+
+1. In the Azure Portal, use the **[\>_]** button to the right of the search bar at the top of the page to create a new Cloud Shell in the Azure portal, selecting a ***PowerShell*** environment. The cloud shell provides a command line interface in a pane at the bottom of the Azure portal.
+
+    > **Note**: If you have previously created a cloud shell that uses a *Bash* environment, switch it to ***PowerShell***.
 
 1. Run the following **curl** command, replacing *&lt;your_ACI_IP_address_or_FQDN&gt;* with the IP address or FQDN for your container.
 
