@@ -12,21 +12,6 @@ Many of the Azure AI services APIs can be packaged and deployed in a *container*
 
 > **Note**: There is an issue currently being investigated that some users hit where containers won't deploy properly, and calls to those containers fail. Updates to this lab will be made as soon as the issue has been resolved.
 
-## Clone the repository in Visual Studio Code
-
-You'll develop your code using Visual Studio Code. The code files for your app have been provided in a GitHub repo.
-
-> **Tip**: If you have already cloned the **mslearn-ai-services** repo, open it in Visual Studio code. Otherwise, follow these steps to clone it to your development environment.
-
-1. Start Visual Studio Code.
-2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/mslearn-ai-services` repository to a local folder (it doesn't matter which folder).
-3. When the repository has been cloned, open the folder in Visual Studio Code.
-4. Wait while additional files are installed to support the C# code projects in the repo, if necessary
-
-    > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**.
-
-5. Expand the `Labfiles/04-use-a-container` folder.
-
 ## Provision an Azure AI Services resource
 
 If you don't already have one in your subscription, you'll need to provision an **Azure AI Services** resource.
@@ -41,6 +26,35 @@ If you don't already have one in your subscription, you'll need to provision an 
 3. Select the required checkboxes and create the resource.
 4. Wait for deployment to complete, and then view the deployment details.
 5. When the resource has been deployed, go to it and view its **Keys and Endpoint** page. You will need the endpoint and one of the keys from this page in the next procedure.
+
+## Clone the repository in Cloud Shell
+
+You'll develop your code using Cloud Shell from the Azure Portal. The code files for your app have been provided in a GitHub repo.
+
+> **Tip**: If you have already cloned the **mslearn-ai-services** repo recently, you can skip this task. Otherwise, follow these steps to clone it to your development environment.
+
+1. In the Azure Portal, use the **[\>_]** button to the right of the search bar at the top of the page to create a new Cloud Shell in the Azure portal, selecting a ***PowerShell*** environment. The cloud shell provides a command line interface in a pane at the bottom of the Azure portal.
+
+    > **Note**: If you have previously created a cloud shell that uses a *Bash* environment, switch it to ***PowerShell***.
+
+1. In the cloud shell toolbar, in the **Settings** menu, select **Go to Classic version** (this is required to use the code editor).
+
+    > **Tip**: As you paste commands into the cloudshell, the ouput may take up a large amount of the screen buffer. You can clear the screen by entering the `cls` command to make it easier to focus on each task.
+
+1. In the PowerShell pane, enter the following commands to clone the GitHub repo for this exercise:
+
+    ```
+    rm -r mslearn-ai-services -f
+    git clone https://github.com/microsoftlearning/mslearn-ai-services mslearn-ai-services
+    ```
+
+1. After the repo has been cloned, navigate to the folder containing the application code files:  
+
+    ```
+   cd mslearn-ai-services/Labfiles/04-use-a-container
+    ```
+    
+    > **Tip**: As you work in the Azure portal, you can minimize the Cloud Shell terminal and open it again when needed.
 
 ## Deploy and run a Sentiment Analysis container
 
@@ -95,20 +109,26 @@ Many commonly used Azure AI services APIs are available in container images. For
 
 ## Use the container
 
-1. In your editor, open **rest-test.cmd** and edit the **curl** command it contains (shown below), replacing *&lt;your_ACI_IP_address_or_FQDN&gt;* with the IP address or FQDN for your container.
+1. Enter the following command to open **rest-test.cmd**:
+
+    ```
+   code rest-test.cmd
+    ```
+
+1. In your editor, edit the **curl** command it contains (shown below), replacing *&lt;your_ACI_IP_address_or_FQDN&gt;* with the IP address or FQDN for your container.
 
     ```
     curl -X POST "http://<your_ACI_IP_address_or_FQDN>:5000/text/analytics/v3.1/sentiment" -H "Content-Type: application/json" --data-ascii "{'documents':[{'id':1,'text':'The performance was amazing! The sound could have been clearer.'},{'id':2,'text':'The food and service were unacceptable. While the host was nice, the waiter was rude and food was cold.'}]}"
     ```
 
-2. Save your changes to the script by pressing **CTRL+S**. Note that you do not need to specify the Azure AI services endpoint or key - the request is processed by the containerized service. The container in turn communicates periodically with the service in Azure to report usage for billing, but does not send request data.
-3. Enter the following command to run the script:
+1. Save your changes to the script by pressing **CTRL+S** and close the code editor by pressing **CTRL+Q**. Note that you do not need to specify the Azure AI services endpoint or key - the request is processed by the containerized service. The container in turn communicates periodically with the service in Azure to report usage for billing, but does not send request data.
+1. Enter the following command to run the script:
 
     ```
     ./rest-test.cmd
     ```
 
-4. Verify that the command returns a JSON document containing information about the sentiment detected in the two input documents (which should be postive and negative, in that order).
+1. Verify that the command returns a JSON document containing information about the sentiment detected in the two input documents (which should be positive and negative, in that order).
 
 ## Clean Up
 
