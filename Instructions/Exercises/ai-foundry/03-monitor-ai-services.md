@@ -84,30 +84,18 @@ Let's start monitoring by defining an alert rule so you can detect activity in y
 As well as defining alerts, you can view metrics for your Azure AI services resource to monitor its utilization.
 
 1. In the Azure portal, in the page for your Azure AI services resource, select **Metrics** (in the **Monitoring** section).
-2. If there is no existing chart, select **+ New chart**. Then in the **Metric** list, review the possible metrics you can visualize and select **Total Calls**.
-3. In the **Aggregation** list, select **Count**.  This will enable you to monitor the total calls to you Azure AI Service resource; which is useful in determining how much the service is being used over a period of time.
-4. To generate some requests to your Azure AI service, you will use **curl** - a command line tool for HTTP requests. Enter the following command to open **rest-test.cmd**:
-
-    ```
-   code rest-test.cmd
-    ```
-
-5. Edit the **curl** command in the file (shown below), replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Text Analytics API in your Azure AI services resource.
+1. If there is no existing chart, select **+ New chart**. Then in the **Metric** list, review the possible metrics you can visualize and select **Total Calls**.
+1. In the **Aggregation** list, select **Count**.  This will enable you to monitor the total calls to you Azure AI Service resource; which is useful in determining how much the service is being used over a period of time.
+1. To generate some requests to your Azure AI service, you will use **curl** - a command line tool for HTTP requests. Run the command shown below, replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Text Analytics API in your Azure AI services resource.
 
     ```
     curl -X POST "<your-endpoint>/language/:analyze-text?api-version=2023-04-01" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <your-key>" --data-ascii "{'analysisInput':{'documents':[{'id':1,'text':'hello'}]}, 'kind': 'LanguageDetection'}"
     ```
 
-6. After you've replaced the placeholders, use the **CTRL+S** command to save your changes and then use the **CTRL+Q** command to close the code editor while keeping the cloud shell command line open. Then run the following command:
-
-    ```
-    ./rest-test.cmd
-    ```
-
     The command returns a JSON document containing information about the language detected in the input data (which should be English).
 
-7. Re-run the **rest-test** command multiple times to generate some call activity (you can use the **^** key to cycle through previous commands).
-8. Return to the **Metrics** page in the Azure portal and refresh the **Total Calls** count chart. It may take a few minutes for the calls you made using *curl* to be reflected in the chart - keep refreshing the chart until it updates to include them.
+1. Re-run the **curl** command multiple times to generate some call activity (you can use the **^** key to cycle through previous commands).
+1. Return to the **Metrics** page in the Azure portal and refresh the **Total Calls** count chart. It may take a few minutes for the calls you made using *curl* to be reflected in the chart - keep refreshing the chart until it updates to include them.
 
 ## Clean up resources
 
