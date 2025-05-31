@@ -110,6 +110,61 @@ Many commonly used Azure AI services APIs are available in container images. For
 
 4. Verify that the command returns a JSON document containing information about the sentiment detected in the two input documents (which should be postive and negative, in that order).
 
+## Troubleshooting
+
+> **Note:**  
+> Seeing your container as "Running" in the Azure Portal does **not** always mean it is ready to process requests. If you try to use `curl` and get errors like:
+>
+> ```text
+> curl: (52) Empty reply from server
+> curl: (56) Recv failure: Connection reset by peer
+> ```
+>
+> This may mean the container has not been started with the correct parameters or environment, or is missing model files or internet access for model download.
+
+### Alternative: Deploying the Container using Azure CLI
+
+You can try the following command (replace the `rg-name`, `container-name`, `ApiKey` and `Billing` endpoint with your values):
+
+```bash
+az container create \
+  --resource-group <rg-name> \
+  --name <container-name> \
+  --image mcr.microsoft.com/azure-cognitive-services/sentiment \
+  --ports 5000 \
+  --dns-name-label ai102sentimentdemo \
+  --environment-variables Eula=accept \
+  --secure-environment-variables ApiKey=<your_api_key> Billing=<your_billing_endpoint> \
+  --cpu 2 --memory 4 \
+  --os-type Linux
+```
+After deployment, you can test the endpoint (replace <ACI_IP> as appropriate):
+```bash
+curl -X POST "http://<ACI_IP>:5000/text/analytics/v3.0/sentiment?model-version=latest" \
+-H "Content-Type: application/json" \
+-d '{
+  "documents": [
+    {
+      "id": "1-en",
+      "language": "en",
+      "text": "The performance was amazing! The sound could have been clearer."
+    },
+    {
+      "id": "2-en",
+      "language": "en",
+      "text": "The food and service were unacceptable. While the host was nice, the waiter was rude and food was cold."
+    }
+  ]
+}'
+```
+**Try it**:
+
+    If v3.1 endpoints do not work, try using v3.0 or v3.1-preview.1 with above cmd.
+
+    Always check the /status endpoint and container logs for model loading messages (look for: Model loaded from /input/TextAnalytics/v3.x/Sentiment).
+
+    If you still encounter issues, running the container locally with Docker may help to diagnose local vs. cloud issues.
+
 ## Clean Up
 
 If you've finished experimenting with your container instance, you should delete it.
