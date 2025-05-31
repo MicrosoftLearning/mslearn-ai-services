@@ -1,7 +1,8 @@
 ---
 lab:
-    title: 'Monitor Azure AI Services'
-    module: 'Module 2 - Developing AI Apps with Azure AI Services'
+    title: 'Get started with Azure AI Services'
+    module: 'Module 4 - Monitor Azure AI services'
+    exercise: 'Monitor Azure AI services'
 ---
 
 # Monitor Azure AI Services

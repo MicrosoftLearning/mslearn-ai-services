@@ -1,7 +1,8 @@
 ---
 lab:
-    title: 'Manage Azure AI Services Security'
-    module: 'Module 2 - Developing AI Apps with Azure AI Services'
+    title: 'Get Started with Azure AI Services'
+    module: 'Module 3 - Secure Azure AI services'
+    excercise: 'Manage Azure AI Services Security'
 ---
 
 # Manage Azure AI Services Security

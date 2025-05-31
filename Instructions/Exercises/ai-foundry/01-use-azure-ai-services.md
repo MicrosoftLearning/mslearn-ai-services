@@ -1,7 +1,8 @@
 ---
 lab:
     title: 'Get Started with Azure AI Services'
-    module: 'Module 2 - Developing AI Apps with Azure AI Services'
+    module: 'Module 2 - Create and consume Azure AI services'
+    excercise: 'Use Azure AI services' 
 ---
 
 # Get Started with Azure AI Services
