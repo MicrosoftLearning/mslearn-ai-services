@@ -1,7 +1,7 @@
 ---
 lab:
     title: 'Use an Azure AI Services Container'
-    description: 'Deploy your own container and use Azure AI Services within it'
+    description: 'Deploy your own container and use Azure AI Services within it.'
 ---
 
 # Use an Azure AI Services Container
