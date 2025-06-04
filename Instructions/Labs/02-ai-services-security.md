@@ -134,7 +134,7 @@ To access the secret in the key vault, your application must use a service princ
     > **Tip**: If you are unsure of your subscription ID, use the **az account show** command to retrieve your subscription information - the subscription ID is the **id** attribute in the output. If you see an error about the object already existing, please choose a different unique name.
 
     ```
-    az ad sp create-for-rbac -n "api://<spName>" --role owner --scopes subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>
+    az ad sp create-for-rbac -n "api://<spName>"
     ```
 
 The output of this command includes information about your new service principal. It should look similar to this:
@@ -183,9 +183,9 @@ Now you're ready to use the service principal identity in an application, so it 
     **Python**
 
     ```
-    pip install azure-ai-textanalytics==5.3.0
-    pip install azure-identity==1.17.1
-    pip install azure-keyvault-secrets==4.8.0
+   python -m venv labenv
+   ./labenv/bin/Activate.ps1
+   pip install python-dotenv azure-identity==1.17.1 azure-keyvault-secrets==4.8.0 azure-ai-textanalytics==5.3.0
     ```
 
 3. Run the `ls` command to view the contents of the **keyvault-client** folder, and note that it contains a file for configuration settings:
