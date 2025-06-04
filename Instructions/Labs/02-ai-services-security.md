@@ -1,7 +1,7 @@
 ---
 lab:
     title: 'Manage Azure AI Services Security'
-    description: 'Manage and secure access to your Azure AI Services resource'
+    description: 'Manage and secure access to your Azure AI Services resource.'
 ---
 
 # Manage Azure AI Services Security
