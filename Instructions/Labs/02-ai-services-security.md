@@ -1,7 +1,7 @@
 ---
 lab:
     title: 'Manage Azure AI Services Security'
-    module: 'Module 2 - Developing AI Apps with Azure AI Services'
+    description: 'Manage and secure access to your Azure AI Services resource'
 ---
 
 # Manage Azure AI Services Security
