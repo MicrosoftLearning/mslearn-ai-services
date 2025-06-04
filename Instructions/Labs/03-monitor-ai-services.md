@@ -1,7 +1,7 @@
 ---
 lab:
     title: 'Monitor Azure AI Services'
-    description: 'Monitor Azure AI Services usage and set up alerts'
+    description: 'Monitor Azure AI Services usage and set up alerts.'
 ---
 
 # Monitor Azure AI Services
