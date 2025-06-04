@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Implement Azure AI Content Safety'
+    description: 'Provision a Content Safety resource to secure your application against harmful content.'
 ---
 
 # Implement Azure AI Content Safety
