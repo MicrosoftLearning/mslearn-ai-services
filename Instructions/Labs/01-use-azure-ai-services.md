@@ -1,7 +1,7 @@
 ---
 lab:
     title: 'Get Started with Azure AI Services'
-    description: 'Provision Azure AI Services for your application'
+    description: 'Provision Azure AI Services for your application.'
 ---
 
 # Get Started with Azure AI Services
