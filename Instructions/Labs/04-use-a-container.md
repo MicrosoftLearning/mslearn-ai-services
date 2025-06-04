@@ -1,7 +1,7 @@
 ---
 lab:
     title: 'Use an Azure AI Services Container'
-    module: 'Module 2 - Developing AI Apps with Azure AI Services'
+    description: 'Deploy your own container and use Azure AI Services within it'
 ---
 
 # Use an Azure AI Services Container
