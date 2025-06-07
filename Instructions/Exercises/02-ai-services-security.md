@@ -97,6 +97,9 @@ You can develop applications that consume Azure AI services by using a key for a
 
 First, you need to create a key vault and add a *secret* for the Azure AI services key.
 
+Choose one method of for creating a key vault and adding a secret:
+
+#### Using the Azure portal
 1. Make a note of the **key1** value for your Azure AI services resource (or copy it to the clipboard).
 2. In the Azure portal, on the **Home** page, select the **&#65291;Create a resource** button, search for *Key Vault*, and create a **Key Vault** resource with the following settings:
 
@@ -118,6 +121,33 @@ First, you need to create a key vault and add a *secret* for the Azure AI servic
     - **Name**: AI-Services-Key *(it's important to match this exactly, because later you'll run code that retrieves the secret based on this name)*
     - **Secret value**: *Your **key1** Azure AI services key*
 6. Select **Create**.
+
+#### Using Azure CLI
+Alternatively you can use Azure CLi to Create a key vault and add a secret.
+
+1. Open a terminal in Visual Studio Code.
+2. Create a Key Vault by running the following command, replacing `<keyVaultName>`, `<resourceGroup>`, and `<location>` with your desired Key Vault name, the resource group name, and the Azure region (for example, `eastus`):
+
+    ```
+    az keyvault create \
+      --name <key-vault-name> \
+      --resource-group <resource-group-name> \
+      --location <region> \
+      --sku standard \
+      --enable-rbac-authorization false
+    ```
+    The flag `--enable-rbac-authorization false` ensures the permission model is set to "Vault access policy" (the default).
+
+3. Add your Azure AI services key as a secret in the Key Vault. Replace `<keyVaultName>` with your Key Vault name and `<your-key1-value>` with the value of your Azure AI services key1:
+
+    ```
+    az keyvault secret set \
+    --vault-name <key-vault-name> \
+    --name AI-Services-Key \
+    --value <your-azure-ai-services-key>
+    ```
+
+You have now created a Key Vault and stored your Azure AI services key as a secret named `AI-Services-Key`.
 
 ### Create a service principal
 
