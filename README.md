@@ -1,4 +1,6 @@
-# Develop Generative AI Solutions in Azure
+# Develop AI Solutions in Azure
+
+> **NOTE**: This repo is being archived, and is no longer maintained. Please visit the [generative AI apps](https://learn.microsoft.com/en-us/training/paths/create-custom-copilots-ai-studio/) learning path and [associated lab repo](https://github.com/MicrosoftLearning/mslearn-ai-studio), or [Azure AI Foundry documentation](https://learn.microsoft.com/en-us/azure/ai-foundry/)
 
 The exercises in this repo are designed to provide you with a hands-on learning experience in which you'll explore common tasks that developers perform when building generative AI solutions on Microsoft Azure.
 
